@@ -12,11 +12,11 @@
   grid-row: 1/-1;
   grid-column: 1/-1;
 }
-.image-container{
-    position: relative;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr ;
+.image-container {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
 }
 .sweat-img {
   width: 25rem;
@@ -32,12 +32,12 @@
   padding: 1rem;
   margin: 4rem 2rem;
 }
-.button-heading{
-    grid-column: 2/3;
-    grid-row: 2/3;
-    align-self: center;
-    width: 20rem;
-    font-size: 2.5rem;
+.button-heading {
+  grid-column: 2/3;
+  grid-row: 2/3;
+  align-self: center;
+  width: 20rem;
+  font-size: 2.5rem;
 }
 .text-xl {
   margin: 2rem 0;
@@ -51,9 +51,13 @@
   cursor: pointer;
   position: relative;
 }
+.button{
+  font-size: 2rem;
+}
 .button-animation {
-    position: absolute;
-    transform: translate(60%,500%);
+  position: absolute;
+  font-size: 1.6rem;
+  transform: translate(60%, 500%);
 }
 .overlay {
   position: absolute;
