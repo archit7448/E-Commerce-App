@@ -42,6 +42,9 @@
 .text-xl {
   margin: 2rem 0;
 }
+.text-md{
+  margin: 1rem;
+}
 .category-card {
   display: flex;
   flex-direction: column;
