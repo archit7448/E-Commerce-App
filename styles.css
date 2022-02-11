@@ -60,7 +60,7 @@
 .button-animation {
   position: absolute;
   font-size: 1.6rem;
-  transform: translate(60%, 500%);
+  transform: translate(70%, 500%);
 }
 .overlay {
   position: absolute;
