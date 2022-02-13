@@ -103,7 +103,7 @@ label{
 .button-login{
   font-size: 2rem;
   margin: 1rem;
-  padding: 0.5rem 1rem;
+  padding: 0.5px 1rem;
 }
 /*Product-list*/
 .product-page-wrapper{
@@ -144,10 +144,6 @@ label:hover{
 .rating-number{
   display: flex;
   justify-content: space-between;
-}
-.card-wrapper{
-  width: 25rem;
-  min-width: 20rem;
 }
 .product-list-wrapper{
   display: flex;
