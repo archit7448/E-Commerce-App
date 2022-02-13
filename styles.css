@@ -1,3 +1,6 @@
+main{
+  display: block;
+}
 .navigation {
   display: flex;
   border: 3px solid var(--color-grey);
@@ -100,5 +103,51 @@ label{
 .button-login{
   font-size: 2rem;
   margin: 1rem;
-  padding: 0.5rem 1rem;
+  padding: 5px 1rem;
+}
+/*Product-list*/
+.product-page-wrapper{
+  display:flex;
+}
+.filter-wrapper{
+  width: 30rem;
+  box-shadow: 5px 0px 2px 2px rgba(0,0,0,0.25);
+  height:80vh;
+}
+.flex-col{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 1rem;
+  color: var(--color-grey);
+}
+input[type ="checkbox"]{
+  transform: scale(1.2);
+}
+label{
+  font-size: 1.7rem;
+  cursor: pointer;
+}
+label:hover{
+  color: var(--color-black);
+}
+.price-filter-wrapper{
+  margin: 2rem 0;
+}
+.price-filter-wrapper h1{
+  font-size: 2rem;
+  color: var(--color-primary-blue);
+}
+.slider{
+  width: fit-content;
+}
+.rating-number{
+  display: flex;
+  justify-content: space-between;
+}
+.product-list-wrapper{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3rem;
+  padding: 1rem;
 }
