@@ -1,6 +1,4 @@
-main {
-  display: block;
-}
+@import url("https://mindify-ui.netlify.app/styles.css");
 .navigation {
   display: flex;
   border: 3px solid var(--color-grey);
@@ -154,7 +152,7 @@ label:hover {
 /* Cart */
 .cart-wrapper {
   display: grid;
-  grid-template-columns: 4fr 1fr;
+  grid-template-columns: 2fr 1fr;
 }
 .cart-product-wrapper {
   display: flex;
@@ -173,10 +171,16 @@ label:hover {
 .quantity-wrapper button {
   font-size: 2rem;
   padding: 5px 1rem;
-  color: white;
-  background-color: var(--color-grey);
+  color:var(--color-black);
+  background-color: var(--color-secondary-white);
+  border: 1px solid var(--color-black);
   margin: 1rem;
   cursor: pointer;
+  border-radius: 2px;
+}
+.quantity-wrapper button:hover{
+  color: var(--color-neon-blue);
+  border: 1px solid var(--color-neon-blue);
 }
 .place-order {
   box-shadow: 1px 2px 2px 2px var(--color-box-shadow);
@@ -194,6 +198,23 @@ label:hover {
 }
 .quantity-wrapper{
   align-self: center;
+}
+@media screen and (max-width:600px) {
+  .cart-wrapper{
+    grid-template-columns: 1fr;
+    grid-template-areas: 
+    "products"
+    "place-order"
+    ;
+  }
+  .cart-product-wrapper{
+    grid-area: products;
+    justify-content: center;
+  }
+  .place-order{
+    grid-area: place-order;
+    margin: 2rem auto;
+  }
 }
 /* wishlist */
 .wishlist-wrapper {
