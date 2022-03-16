@@ -8,10 +8,11 @@ import { v4 as uuid } from "uuid";
 export const products = [
   {
     _id: uuid(),
-    title: "You Can WIN",
-    author: "Shiv Khera",
-    price: "5000",
-    categoryName: "non-fiction",
+    title: "The Subtle art of not giving a fu*k",
+    Produced: "By Mark Manson",
+    price: "300",
+    description:"Book written by Mark Manson to help people",
+    categoryName: "book",
   },
   {
     _id: uuid(),

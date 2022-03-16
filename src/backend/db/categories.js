@@ -1,5 +1,8 @@
 import { v4 as uuid } from "uuid";
-
+import Book from "../assets/book1.jpg" 
+import gym from "../assets/gym1.jpg" 
+import oats from "../assets/food1.jpg" 
+import movies from "../assets/movies1.jpg" 
 /**
  * Category Database can be added here.
  * You can add category of your wish with different attributes
@@ -8,20 +11,22 @@ import { v4 as uuid } from "uuid";
 export const categories = [
   {
     _id: uuid(),
-    categoryName: "fiction",
-    description:
-      "literature in the form of prose, especially novels, that describes imaginary events and people",
+    categoryName: "BOOK",
+    image: Book,
   },
   {
     _id: uuid(),
-    categoryName: "non-fiction",
-    description:
-      "Non-fiction is writing that gives information or describes real events, rather than telling a story.",
+    categoryName: "MOVIES",
+    image: movies ,
   },
   {
     _id: uuid(),
-    categoryName: "horror",
-    description:
-      "Meant to cause discomfort and fear for both the character and readers, horror writers often make use of supernatural and paranormal elements in morbid stories that are sometimes a little too realistic.",
+    categoryName: "FOOD",
+    image :oats ,
+  },
+  {
+    _id: uuid(),
+    categoryName: "GYM EQUIPMENT",
+    image: gym ,
   },
 ];
