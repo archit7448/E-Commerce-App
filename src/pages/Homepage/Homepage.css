@@ -1,0 +1,40 @@
+@import url("https://fonts.googleapis.com/css?family=Special+Elite");
+blockquote {
+  font-family: "Special Elite", cursive;
+  font-size: 3rem;
+}
+.homepage-main {
+  background: #fffdf5;
+  width: 90%;
+  margin: 5rem auto;
+  padding: 1rem;
+  display: flex;
+}
+.homepage-main img {
+  width: 60rem;
+}
+.blockquote-product {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.button-blockquote {
+  margin: 3rem 0;
+  font-size: 2rem;
+}
+.categories-type {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin: 4rem 0rem;
+  gap: 2rem;
+}
+@media only screen and (max-width: 600px) {
+  .homepage-main {
+    flex-direction: column;
+  }
+  .homepage-main img {
+    width: 100%;
+  }
+}
