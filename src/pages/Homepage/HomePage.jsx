@@ -1,6 +1,6 @@
 import { Header } from "../../Components/header/header";
 import mainImage from "../../assets/homepage.png";
-import { Genres } from "../../Components/genres/cateories";
+import { Genres } from "../../Components/genres/categories";
 import "./Homepage.css";
 export const HomePage = () => {
   return (
