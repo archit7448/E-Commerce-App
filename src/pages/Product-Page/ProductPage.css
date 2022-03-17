@@ -1,0 +1,109 @@
+.product-heading {
+  margin-top: 8rem;
+}
+.filters-wrapper {
+  display: grid;
+  width: 100%;
+  grid-template-columns: 2fr 1fr;
+  grid-template-rows: 4rem 8rem 8rem;
+  grid-template-areas:
+    "area1   clear"
+    "ratings sort"
+    "product slider";
+}
+.category-wrapper {
+  display: flex;
+  flex-wrap: nowrap;
+  grid-area: product;
+  width: fit-content;
+}
+.heading-filter {
+  color: var(--color-card);
+  text-align: center;
+}
+hr {
+  width: 100%;
+  height: 1px;
+  background-color: var(--color-card);
+}
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+.button-product {
+  margin: 1rem;
+}
+.area-container {
+  grid-area: area;
+  display: flex;
+  justify-content: space-between;
+}
+.sort-container {
+  grid-area: sort;
+}
+.ratings-heading {
+  text-transform: uppercase;
+  color: var(--color-card);
+  font-weight: 500;
+  margin: 0 1rem;
+  font-size: 2rem;
+}
+.clear-button {
+  width: fit-content;
+  color: var(--alert-error);
+  border: 0px;
+  grid-area: clear;
+}
+.clear-button:hover {
+  color: var(--alert-error);
+  border: 1px solid var(--alert-error);
+}
+.button-filter {
+  background-color: white;
+  font-size: 3rem;
+  cursor: pointer;
+}
+.category-heading-wrapper {
+  grid-area: product;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.rating-heading-wrapper {
+  grid-area: ratings;
+}
+.price-wrapper {
+  grid-area: slider;
+}
+@media only screen and (max-width: 800px) {
+  .filters-wrapper {
+    display: grid;
+    width: 100%;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 4rem 8rem 8rem 5rem;
+    grid-template-areas:
+      "area1   clear"
+      "ratings sort"
+      "product sort"
+      "slider area2";
+  }
+}
+@media only screen and (max-width: 400px) {
+  .filters-wrapper {
+    display: grid;
+    width: 100%;
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: 4rem 7rem 7rem 5rem 7rem;
+    grid-template-areas:
+      "area1   clear"
+      "ratings area4"
+      "product area3"
+      "slider area2"
+      "sort area2"
+  }
+}
+.price-color{
+  color: var(--alert-info);
+}

@@ -24,6 +24,9 @@
 }
 .card-button-wrapper {
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .card-button {
   width: fit-content;
@@ -34,22 +37,27 @@
   font-weight: 500;
   text-transform: uppercase;
   padding-top: 1.5rem;
-  font-size: 2.4rem;
+  font-size: 2rem;
 }
 .card-heading-two {
   color: var(--color-card);
   text-transform: uppercase;
   font-weight: 500;
-  font-size: 1.8rem;
+  font-size: 1.5rem;
 }
 .card-price {
   color: var(--color-card);
   font-weight: 300;
-  padding-top: 1.5rem;
+  padding: 1rem;
   font-size: 3rem;
 }
 .card-para {
-  font-size: 1.6rem;
+  font-size: 1.3rem;
   color: var(--color-card);
-  padding: 2rem 0;
+  padding: 1rem 0;
+}
+.card-ratings{
+  color: var(--color-card);
+  font-weight: 300;
+  font-size: 2rem;
 }

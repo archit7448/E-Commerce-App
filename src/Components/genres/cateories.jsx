@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { useData } from "../../context/Data";
 import "./categories.css";
 export const Genres = () => {
@@ -5,13 +6,16 @@ export const Genres = () => {
   const { categories } = state;
   return categories.map(({ categoryName, image, _id }) => {
     return (
-      <div class="category-card" key={_id}>
-        <h1 class="text-md">{categoryName}</h1>
-        <img src={image} alt="sweatshirt" class="image-categories" />
-        <div class="overlay">
-          <button class="button-animation button button-primary">
-            SHOP NOW
-          </button>
+      <div className="category-card" key={_id}>
+        <h1 className="text-md">{categoryName}</h1>
+        <img src={image} alt="sweatshirt" className="image-categories" />
+        <div className="overlay">
+          <Link to = "/products">
+            {" "}
+            <button className="button-animation button button-primary">
+              SHOP NOW
+            </button>
+          </Link>
         </div>
       </div>
     );

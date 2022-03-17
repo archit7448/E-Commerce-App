@@ -8,3 +8,6 @@
 :root{
   --color-card:#515151 ;
 }
+section{
+  margin-top: 10rem;
+}
