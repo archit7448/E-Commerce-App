@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 @import url("https://mindify-ui.netlify.app/components/library.css");
 @import url("./Components/index.css");
 @import url(https://fonts.googleapis.com/css?family=Raleway:400,300,500,700);
@@ -8,3 +9,18 @@
 :root{
   --color-card:#515151 ;
 }
+=======
+@import url("https://mindify-ui.netlify.app/components/library.css");
+@import url("./Components/index.css");
+@import url(https://fonts.googleapis.com/css?family=Raleway:400,300,500,700);
+
+.App {
+  font-family: "Raleway"
+}
+:root{
+  --color-card:#515151 ;
+}
+section{
+  margin-top: 10rem;
+}
+>>>>>>> dev-product

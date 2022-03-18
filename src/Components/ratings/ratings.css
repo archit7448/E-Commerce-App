@@ -1,0 +1,15 @@
+.ratings{
+    font-size: 3rem;
+    cursor: pointer;
+}
+.ratings-color{
+    color:#FFE234;
+    font-size: 3rem;
+    cursor: pointer;
+}
+.ratings-wrapper{
+    display:flex ;
+}
+.button-ratings{
+    background-color:white;
+}
