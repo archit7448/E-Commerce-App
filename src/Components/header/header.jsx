@@ -17,7 +17,8 @@ export const Header = () => {
         <div className="heart">
           <NewHeart />
         </div>
-        <button className="button button-primary">LOGIN</button>
+        <Link to="/SignIn">
+        <button className="button button-primary">LOGIN</button></Link>
       </div>
     </header>
   );

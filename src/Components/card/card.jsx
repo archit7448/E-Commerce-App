@@ -8,7 +8,7 @@ import {
 } from "../../reducers/filter";
 import "./card.css";
 export const Card = () => {
-  const { state } = useData();
+  const { state } = useData() ;
   const { products, filter } = state;
   const { sortBy, category, ratings,price } = filter;
   const sortedData = SortedFunction(products, sortBy);
@@ -25,7 +25,7 @@ export const Card = () => {
             <h2 className="card-heading-two">{produced}</h2>
             <h2 className="card-price">₹ {price}</h2>
             <h2 className="card-ratings"> ratings:{ratings}</h2>
-            <p Name="card-para">{description}</p>
+            <p className="card-para">{description}</p>
             <div className="card-button-wrapper">
               <button className="button button-primary card-button">
                 ADD TO CART

@@ -8,7 +8,7 @@ import { useData } from "../../context/Data";
 import { HiOutlineFilter } from "react-icons/hi";
 import { useState } from "react";
 export const ProductPage = () => {
-  const { dispatch, state } = useData();
+  const { dispatch, state } = useData() ;
   const { filter } = state;
   const { price } = filter;
   const [showfilter, setShowFilter] = useState(false);

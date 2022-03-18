@@ -1,6 +1,6 @@
 import { Header } from "../../Components/header/header";
 import mainImage from "../../assets/homepage.png";
-import { Genres } from "../../Components/genres/categories";
+import { Genres } from "../../Components/genres/cateories";
 import "./Homepage.css";
 import { Link } from "react-router-dom";
 export const HomePage = () => {
@@ -14,7 +14,7 @@ export const HomePage = () => {
               “Here you can find the best mental and physical health product ,
               like books , food , movies and gym equipment”
             </blockquote>
-            <Link to = "/products">
+            <Link to="/products">
               <button className="button button-primary button-blockquote">
                 LET START
               </button>
