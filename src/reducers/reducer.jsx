@@ -25,7 +25,9 @@ export const reducer = (state, action) => {
     case "CLEAR" :  
        return {...state,filter:intialstate.filter}
     case "PRICE_FILTER":
-       return {...state,filter:{...filter,price: action.payload}}   
+       return {...state,filter:{...filter,price: action.payload}}
+    case "ADD_TOKEN":
+            
    default:
           return state
   }

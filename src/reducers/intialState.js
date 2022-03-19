@@ -12,5 +12,5 @@ export const intialstate = {
     ratings: 0,
     price:1000
   },
-  encodedToken : null
+  encodedToken : localStorage.getItem("token")
 };

@@ -8,13 +8,13 @@ import {
 } from "../../reducers/filter";
 import "./card.css";
 export const Card = () => {
-  const { state } = useData() ;
+  const { state } = useData();
   const { products, filter } = state;
-  const { sortBy, category, ratings,price } = filter;
+  const { sortBy, category, ratings, price } = filter;
   const sortedData = SortedFunction(products, sortBy);
   const categoryData = CategoryFilter(sortedData, category);
   const RatingData = RatingFilter(categoryData, ratings);
-  const PriceData = PriceFilter(RatingData,price)
+  const PriceData = PriceFilter(RatingData, price);
   return PriceData.map(
     ({ _id, title, produced, price, description, image, ratings }) => {
       return (
