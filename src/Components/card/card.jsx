@@ -10,11 +10,11 @@ import "./card.css";
 export const Card = () => {
   const { state } = useData();
   const { products, filter } = state;
-  const { sortBy, category, ratings,price } = filter;
+  const { sortBy, category, ratings, price } = filter;
   const sortedData = SortedFunction(products, sortBy);
   const categoryData = CategoryFilter(sortedData, category);
   const RatingData = RatingFilter(categoryData, ratings);
-  const PriceData = PriceFilter(RatingData,price)
+  const PriceData = PriceFilter(RatingData, price);
   return PriceData.map(
     ({ _id, title, produced, price, description, image, ratings }) => {
       return (
@@ -25,7 +25,7 @@ export const Card = () => {
             <h2 className="card-heading-two">{produced}</h2>
             <h2 className="card-price">₹ {price}</h2>
             <h2 className="card-ratings"> ratings:{ratings}</h2>
-            <p Name="card-para">{description}</p>
+            <p className="card-para">{description}</p>
             <div className="card-button-wrapper">
               <button className="button button-primary card-button">
                 ADD TO CART

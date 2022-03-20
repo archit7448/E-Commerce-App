@@ -7,7 +7,7 @@ const Images = {
     food2: require("../assets/food2.jpg").default,
     food3: require("../assets/food3.jpg").default,
     gym1: require("../assets/gym1.jpg").default,
-    gym2: require("../assets/gym1.jpg").default,
+    gym2: require("../assets/gym2.jpg").default,
     gym3: require("../assets/gym3.jpg").default,
     movie1: require("../assets/movie1.jpg").default,
     movie2: require("../assets/movie2.jpg").default,

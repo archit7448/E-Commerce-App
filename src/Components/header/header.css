@@ -26,3 +26,7 @@
     border: 0px;
     z-index: 99;
 }
+.header-logo{
+    font-size: 4rem;
+    cursor: pointer;
+}

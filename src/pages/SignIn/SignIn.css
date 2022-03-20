@@ -6,3 +6,7 @@
 .button-form{
     margin: 1rem 0;
 }
+.form-wrapper{
+    display: flex;
+    justify-content: center;
+}
