@@ -1,0 +1,19 @@
+.place-order {
+    box-shadow: 1px 2px 2px 2px var(--color-box-shadow);
+    padding: 3rem;
+    margin: 0 auto;
+    width: fit-content;
+    height: fit-content;
+    line-height: 2.5em;
+  }
+  .productPage-wrapper{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  @media screen and (max-width: 600px) {
+     .productPage-wrapper{
+       display: grid;
+       grid-template-columns: 1fr;
+     }
+  }
+  

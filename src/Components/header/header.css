@@ -30,3 +30,25 @@
     font-size: 4rem;
     cursor: pointer;
 }
+.cart-log{
+    font-size: 2rem;
+    position: absolute;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transform: translate(-100%,-20%);
+    width: 2.5rem;
+    height: 2.5rem;
+    padding: 1rem;
+    background-color: var(--alert-error);
+    border-radius: 50%;
+    color: white;
+}
+.cart-logo{
+    margin-right: 1rem;
+    position: relative;
+    display: inline-flex;
+}
+.button-login{
+    font-size: 2.4rem;
+}

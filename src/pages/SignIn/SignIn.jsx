@@ -5,11 +5,13 @@ import axios from "axios";
 export const SignIn = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
   const loginHandler = async (loginDetails) => {
     try {
       const response = await axios.post("/api/auth/login", loginDetails);
       localStorage.setItem("token", response.data.encodedToken);
     } catch (error) {
+      setError(error);
       console.log(error);
     }
   };
@@ -42,6 +44,7 @@ export const SignIn = () => {
               onChange={(event) => setPassword(event.target.value)}
             />
           </label>
+          {error && <h1>something went wrong</h1>}
           <button
             className="button button-primary button-form"
             onClick={(event) => {

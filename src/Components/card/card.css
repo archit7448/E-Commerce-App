@@ -56,8 +56,22 @@
   color: var(--color-card);
   padding: 1rem 0;
 }
-.card-ratings{
+.card-ratings {
   color: var(--color-card);
   font-weight: 300;
   font-size: 2rem;
+}
+.quantity-container {
+  width: 10rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.wishlist-button {
+  border: 1px solid var(--alert-error);
+  color: var(--alert-error);
+}
+.wishlist-button:hover {
+  border: 1px solid var(--alert-error);
+  color: var(--alert-error);
 }
