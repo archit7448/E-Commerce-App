@@ -12,5 +12,7 @@ export const intialstate = {
     ratings: 0,
     price:1000
   },
-  encodedToken : localStorage.getItem("token")
+  encodedToken : localStorage.getItem("token"),
+  cart:[],
+  wishlist:[]
 };

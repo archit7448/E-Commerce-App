@@ -2,7 +2,10 @@ import { ReactComponent as Logo } from "../../assets/logo.svg";
 import { AiOutlineShoppingCart, AiOutlineHeart } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import "./header.css";
+import { useData } from "../../context/Data";
 export const Header = () => {
+  const {state} = useData()
+  const {cart} = state
   const token = localStorage.getItem("token");
   return (
     <header className="navigation navigation-component">
@@ -13,11 +16,12 @@ export const Header = () => {
         </div>
       </Link>
       <div className="login-cart">
-        {token.length > 0 ? (
+        {token !== null ? (
           <Link to="/Cart">
-            <div className="header-logo">
+            <div className="header-logo cart-logo">
               <AiOutlineShoppingCart />
             </div>
+            <span className="cart-log">{cart.length <10 ?  cart.length : 9+'+'}</span>
           </Link>
         ) : (
           <Link to="/signIn">
@@ -26,9 +30,9 @@ export const Header = () => {
             </div>
           </Link>
         )}
-        {token.length > 0 ? (
+        {token  !== null ? (
           <Link to="/Wishlist">
-            <div className="header-logo">
+            <div className="header-logo heart-logo">
               <AiOutlineHeart />
             </div>
           </Link>
@@ -41,7 +45,7 @@ export const Header = () => {
         )}
 
         <Link to="/signIn">
-          <button className="button button-primary">LOGIN</button>
+          <button className="button button-primary button-login">LOGIN</button>
         </Link>
       </div>
     </header>

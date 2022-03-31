@@ -7,7 +7,7 @@ const DataContext = createContext(null);
 
 const DataProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, intialstate);
-
+  const { encodedToken } = state;
   useEffect(() => {
     const productData = async () => {
       try {
@@ -31,6 +31,40 @@ const DataProvider = ({ children }) => {
     };
     CategoriesData();
   }, []);
+
+  const userData = () => {
+    (async () => {
+      try {
+        const response = await axios.get("/api/user/cart", {
+          headers: {
+            authorization: encodedToken,
+          },
+        });
+        dispatch({ type: "ADD_TO_INTIAL_CART", payload: response.data.cart });
+      } catch (error) {
+        console.log(error);
+      }
+    })();
+    (async () => {
+      try {
+        const response = await axios.get("/api/user/wishlist", {
+          headers: {
+            authorization: encodedToken,
+          },
+        });
+        dispatch({
+          type: "ADD_TO_INTIAL_WISHLIST",
+          payload: response.data.wishlist,
+        });
+      } catch (error) {
+        console.log(error);
+      }
+    })();
+  };
+
+  useEffect(() => {
+    encodedToken !== null && userData();
+  }, [encodedToken]);
 
   return (
     <DataContext.Provider value={{ state, dispatch }}>

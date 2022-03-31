@@ -1,10 +1,15 @@
-import { Header } from "../../Components/header/header"
-
-
+import { Header } from "../../Components/header/header";
+import { useData } from "../../context/Data";
+import { WishlistCard } from "../../Components/wishlist-card/wishlist-card";
 export const WishListPage = () => {
-    return (
-        <main>
-            <Header/>
-        </main>
-    )
-}
+  const { state, dispatch } = useData()
+  const { wishlist } = state;
+  return (
+    <main>
+      <Header />
+      <section>
+        <WishlistCard/>
+      </section>
+    </main>
+  );
+};
