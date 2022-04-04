@@ -46,10 +46,16 @@ export const Card = () => {
                   </button>
                 </Link>
               )
-            ) : (
+            ) : token !== null ? (
               <Link to="/Cart">
                 <button className="button button-primary card-button">
                   GO TO CART
+                </button>
+              </Link>
+            ) : (
+              <Link to="/signIn">
+                <button className="button button-primary card-button">
+                  ADD TO CART
                 </button>
               </Link>
             )}
@@ -65,15 +71,21 @@ export const Card = () => {
                 </button>
               ) : (
                 <Link to="/signIn">
-                  <button className="button button-secondary card-button ">
-                    WISHLIST
+                  <button className="button button-secondary card-button">
+                    WIHSLIST
                   </button>
                 </Link>
               )
-            ) : (
+            ) : token !== null ? (
               <Link to="/Wishlist">
                 <button className="button button-secondary card-button wishlist-button">
                   IN WISHLIST
+                </button>
+              </Link>
+            ) : (
+              <Link to="/signIn">
+                <button className="button button-secondary card-button">
+                  ADD TO CART
                 </button>
               </Link>
             )}
