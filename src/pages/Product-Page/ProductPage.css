@@ -63,6 +63,8 @@ hr {
   background-color: white;
   font-size: 3rem;
   cursor: pointer;
+  display: flex;
+  align-items: center;
 }
 .category-heading-wrapper {
   grid-area: product;

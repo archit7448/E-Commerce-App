@@ -8,7 +8,7 @@ import { useData } from "../../context/Data";
 import { HiOutlineFilter } from "react-icons/hi";
 import { useState } from "react";
 export const ProductPage = () => {
-  const { dispatch, state } = useData() ;
+  const { dispatch, state } = useData();
   const { filter } = state;
   const { price } = filter;
   const [showfilter, setShowFilter] = useState(false);
@@ -20,7 +20,7 @@ export const ProductPage = () => {
           className="button-filter"
           onClick={() => setShowFilter((state) => !state)}
         >
-          <HiOutlineFilter className="filter-icon" />
+          Filters<HiOutlineFilter className="filter-icon" />
         </button>
         {showfilter && (
           <div className="filters-wrapper">
@@ -34,10 +34,12 @@ export const ProductPage = () => {
             <Sort />
             <ProductFilter />
             <div className="price-wrapper">
-              <h1 className="ratings-heading">price filter:<span className="price-color">{price}</span></h1>
+              <h1 className="ratings-heading">
+                price filter:<span className="price-color">{price}</span>
+              </h1>
               <input
                 type="range"
-                min= {100}
+                min={100}
                 max={1000}
                 step="100"
                 value={price}
