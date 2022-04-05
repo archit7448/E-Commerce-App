@@ -1,19 +1,31 @@
 import { useState } from "react";
 import { Header } from "../../Components/header/header";
+import { useNavigate } from "react-router-dom";
 import "./SignIn.css";
 import axios from "axios";
 export const SignIn = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const navigate = useNavigate();
+  const handleLogin = () => {
+    const token = localStorage.getItem("token");
+    if (token !== null) {
+      navigate("/products");
+    } else {
+      setEmail("");
+      setPassword("");
+      setError(true);
+    }
+  };
   const loginHandler = async (loginDetails) => {
     try {
       const response = await axios.post("/api/auth/login", loginDetails);
       localStorage.setItem("token", response.data.encodedToken);
     } catch (error) {
-      setError(error);
       console.log(error);
     }
+    handleLogin();
   };
   return (
     <main>

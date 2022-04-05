@@ -1,54 +1,57 @@
-.cart{
-    height: 3rem;
-    cursor: pointer;
+.cart {
+  height: 3rem;
+  cursor: pointer;
 }
-.logo{
-    height: 4rem;
+.logo {
+  height: 4rem;
 }
-.logo-header{
-    display: flex;
-    font-size: 3rem;
+.logo-header {
+  display: flex;
+  font-size: 3rem;
 }
-.heart{
-    font-size: 3rem;
-    cursor: pointer;
-    margin: 0rem 2rem;
+.heart {
+  font-size: 3rem;
+  cursor: pointer;
+  margin: 0rem 2rem;
 }
-.logo-name{
-    color: var(--color-neon-blue);
+.logo-name {
+  color: var(--color-neon-blue);
 }
-.navigation{
-    box-shadow: 1px 2px 2px rgb(0,0,0,0.2);
-    position: fixed;
-    background-color: white;
-    margin: 0;
-    top: 0px;
-    border: 0px;
-    z-index: 99;
+.navigation {
+  box-shadow: 1px 2px 2px rgb(0, 0, 0, 0.2);
+  position: fixed;
+  background-color: white;
+  margin: 0;
+  top: 0px;
+  border: 0px;
+  z-index: 99;
 }
-.header-logo{
-    font-size: 4rem;
-    cursor: pointer;
+.header-logo {
+  font-size: 4rem;
+  cursor: pointer;
 }
-.cart-log{
-    font-size: 2rem;
-    position: absolute;
-    display: inline-flex;
+.login-cart{
     align-items: center;
-    justify-content: center;
-    transform: translate(-100%,-20%);
-    width: 2.5rem;
-    height: 2.5rem;
-    padding: 1rem;
-    background-color: var(--alert-error);
-    border-radius: 50%;
-    color: white;
 }
-.cart-logo{
-    margin-right: 1rem;
-    position: relative;
-    display: inline-flex;
+.cart-log {
+  font-size: 2rem;
+  position: absolute;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transform: translate(-100%, -20%);
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 1rem;
+  background-color: var(--alert-error);
+  border-radius: 50%;
+  color: white;
 }
-.button-login{
-    font-size: 2.4rem;
+.cart-logo {
+  margin-right: 1rem;
+  position: relative;
+  display: inline-flex;
+}
+.button-login {
+  font-size: 2rem;
 }

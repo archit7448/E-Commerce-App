@@ -1,12 +1,17 @@
 import { ReactComponent as Logo } from "../../assets/logo.svg";
 import { AiOutlineShoppingCart, AiOutlineHeart } from "react-icons/ai";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./header.css";
 import { useData } from "../../context/Data";
 export const Header = () => {
-  const {state} = useData()
-  const {cart} = state
+  const { state } = useData();
+  const { cart, wishlist } = state;
   const token = localStorage.getItem("token");
+  const navigate = useNavigate()
+  const handleLogout = () => {
+    navigate("/")
+    localStorage.removeItem("token")
+  }
   return (
     <header className="navigation navigation-component">
       <Link to="/">
@@ -21,7 +26,9 @@ export const Header = () => {
             <div className="header-logo cart-logo">
               <AiOutlineShoppingCart />
             </div>
-            <span className="cart-log">{cart.length <10 ?  cart.length : 9+'+'}</span>
+            <span className="cart-log">
+              {cart.length < 10 ? cart.length : 9 + "+"}
+            </span>
           </Link>
         ) : (
           <Link to="/signIn">
@@ -30,10 +37,13 @@ export const Header = () => {
             </div>
           </Link>
         )}
-        {token  !== null ? (
+        {token !== null ? (
           <Link to="/Wishlist">
             <div className="header-logo heart-logo">
               <AiOutlineHeart />
+              <span className="cart-log">
+                {wishlist.length < 10 ? wishlist.length : 9 + "+"}
+              </span>
             </div>
           </Link>
         ) : (
@@ -43,10 +53,15 @@ export const Header = () => {
             </div>
           </Link>
         )}
-
-        <Link to="/signIn">
-          <button className="button button-primary button-login">LOGIN</button>
-        </Link>
+        {token !== null ? (
+          <button className="button button-primary button-login" onClick= {handleLogout}>LogOut</button>
+        ) : (
+          <Link to="/signIn">
+            <button className="button button-primary button-login">
+              LogIn
+            </button>
+          </Link>
+        )}
       </div>
     </header>
   );

@@ -12,9 +12,9 @@ export const WishlistCard = () => {
         <img src={image} alt={title} />
         <div className="content-wrapper">
           <h1 className="card-heading-main">{title}</h1>
-          <h2 className="card-heading-two">{produced}</h2>
+          <h4 className="card-heading-two">{produced}</h4>
           <h2 className="card-price">₹ {price}</h2>
-          <h2 className="card-ratings"> ratings:{ratings}</h2>
+          <h4 className="card-ratings"> ratings:{ratings}</h4>
           <p className="card-para">{description}</p>
           <div className="card-button-wrapper">
             <button
