@@ -1,5 +1,6 @@
 import { ReactComponent as Logo } from "../../assets/logo.svg";
 import { AiOutlineShoppingCart, AiOutlineHeart } from "react-icons/ai";
+import { FaUserAlt } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import "./header.css";
 import { useData } from "../../context/Data";
@@ -7,11 +8,12 @@ export const Header = () => {
   const { state } = useData();
   const { cart, wishlist } = state;
   const token = localStorage.getItem("token");
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const handleLogout = () => {
-    navigate("/")
-    localStorage.removeItem("token")
-  }
+    navigate("/");
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+  };
   return (
     <header className="navigation navigation-component">
       <Link to="/">
@@ -54,11 +56,16 @@ export const Header = () => {
           </Link>
         )}
         {token !== null ? (
-          <button className="button button-primary button-login" onClick= {handleLogout}>LogOut</button>
+          <Link to="/profile">
+            <button className="button button-login">
+              <FaUserAlt />
+            </button>
+          </Link>
         ) : (
           <Link to="/signIn">
-            <button className="button button-primary button-login">
-              LogIn
+            <button className="button  button-login">
+              {" "}
+              <FaUserAlt />{" "}
             </button>
           </Link>
         )}

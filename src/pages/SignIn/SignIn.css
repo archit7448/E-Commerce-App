@@ -10,3 +10,35 @@
     display: flex;
     justify-content: center;
 }
+.form-input{
+    border-radius: 2px;
+    border: 2px solid var(--color-grey);
+    width: 100%;
+}
+
+.button-form{
+    width: 80%;
+    padding: 1rem;
+    border-radius: 24px;
+}
+.heading-form{
+    font-weight: 400;
+    margin: 2rem 0;
+    margin-right: 12rem;
+}
+.guest-button{
+    color:var(--color-neon-blue);
+    cursor: pointer;
+    margin-left:12rem;
+    font-size: 1.8rem;
+}
+.signUp-button{
+    color: var(--color-neon-blue);
+   margin: 0rem 1rem;
+   cursor: pointer;
+}
+.flex-row{
+    display: flex;
+    flex-direction: row;
+    font-size: 2rem;
+}

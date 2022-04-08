@@ -8,9 +8,7 @@ import { useData } from "../../context/Data";
 import { HiOutlineFilter } from "react-icons/hi";
 import { useState } from "react";
 export const ProductPage = () => {
-  const { dispatch, state } = useData();
-  const { filter } = state;
-  const { price } = filter;
+  const { dispatch, price } = useData();
   const [showfilter, setShowFilter] = useState(false);
   return (
     <main>
@@ -20,7 +18,8 @@ export const ProductPage = () => {
           className="button-filter"
           onClick={() => setShowFilter((state) => !state)}
         >
-          Filters<HiOutlineFilter className="filter-icon" />
+          Filters
+          <HiOutlineFilter className="filter-icon" />
         </button>
         {showfilter && (
           <div className="filters-wrapper">

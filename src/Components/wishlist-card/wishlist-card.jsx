@@ -2,8 +2,7 @@ import { useData } from "../../context/Data";
 import { Link } from "react-router-dom";
 
 export const WishlistCard = () => {
-  const { state, dispatch } = useData();
-  const { cart, wishlist } = state;
+  const { cart, wishlist, dispatch } = useData();
   return wishlist.map((products) => {
     const { _id, title, produced, price, description, image, ratings } =
       products;

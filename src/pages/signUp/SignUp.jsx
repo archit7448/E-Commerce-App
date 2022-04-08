@@ -1,21 +1,19 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { Header } from "../../Components/header/header";
-import { useAuth } from "../../context/Auth";
+import { useAuth } from "../../context/auth";
 export const SignUp = () => {
   const [firstName, setfirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
-  const { dispatch } = useAuth();
+  const { SignUpHandler } = useAuth();
   return (
     <main>
       <Header />
       <section className="form-wrapper validation">
         <form className="form">
           <label className="form-label">
-            {" "}
-            First Name
             <input
               type="text"
               placeholder="first Name"
@@ -25,8 +23,6 @@ export const SignUp = () => {
             />
           </label>
           <label className="form-label">
-            {" "}
-            Last Name
             <input
               type="text"
               placeholder="last Name"
@@ -36,8 +32,6 @@ export const SignUp = () => {
             />
           </label>
           <label className="form-label">
-            {" "}
-            E-mail
             <input
               type="text"
               name="email-id"
@@ -48,8 +42,6 @@ export const SignUp = () => {
             />
           </label>
           <label className="form-label">
-            {" "}
-            Password
             <input
               type="text"
               name="password"
@@ -59,24 +51,26 @@ export const SignUp = () => {
               onChange={(event) => setPassword(event.target.value)}
             />
           </label>
-          <button className="button button-primary button-form">SIGN UP</button>
           <button
             className="button button-primary button-form"
-            OnClick={() =>
-              dispatch({
-                type: "login",
-                payload: {
-                  email: "adarshbalika@neog.camp",
-                  password: "adarshBalika",
-                },
-              })
-            }
+            onClick={() => {
+              SignUpHandler({
+                email: email,
+                password: password,
+                firstName: firstName,
+                lastName: lastName,
+              });
+            }}
           >
-            GUEST LOGIN
+            SIGN UP
           </button>
-            <button className="button button-secondary button-form">
-              LOGIN
-            </button>
+          <div className="flex-row">
+            <h5>Already have account?</h5>
+            <Link to="/signIn">
+              {" "}
+              <h5 className="signUp-button">SignIn Now</h5>
+            </Link>
+          </div>
         </form>
       </section>
     </main>

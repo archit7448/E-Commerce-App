@@ -1,5 +1,5 @@
 import axios from "axios";
-
+import { notificationError, notificationSuccess } from "../utility/notify";
 export const AddToCart = (state, product) => {
   (async (product) => {
     try {
@@ -12,8 +12,10 @@ export const AddToCart = (state, product) => {
           },
         }
       );
+      notificationSuccess("ADDED TO CART ");
     } catch (error) {
       console.log(error);
+      notificationError("GET FAILED");
     }
   })(product);
   return { ...state, cart: [...state.cart, { ...product, quantity: 1 }] };
@@ -27,8 +29,10 @@ export const RemoveFromCart = (state, id) => {
           authorization: localStorage.getItem("token"),
         },
       });
+      notificationSuccess("REMOVED FROM CART");
     } catch (error) {
       console.log(error);
+      notificationError("GET FAILED");
     }
   })(id);
   const newCart = state.cart.filter((product) => product._id !== id);
@@ -52,8 +56,10 @@ export const IncrementOperater = (state, product) => {
           },
         }
       );
+      notificationSuccess("INCREMENT SUCCESSFULLY");
     } catch (error) {
       console.log(error);
+      notificationError("GET ERROR");
     }
   })(_id);
   return {
@@ -83,8 +89,10 @@ export const DecrementOperater = (state, product) => {
           },
         }
       );
+      notificationSuccess("DECREMENT SUCCESSFULLY");
     } catch (error) {
       console.log(error);
+      notificationError("GET ERROR");
     }
   })(_id);
   return {

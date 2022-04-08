@@ -1,85 +1,63 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { Header } from "../../Components/header/header";
-import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../context/auth";
 import "./SignIn.css";
-import axios from "axios";
 export const SignIn = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
-  const navigate = useNavigate();
-  const handleLogin = () => {
-    const token = localStorage.getItem("token");
-    if (token !== null) {
-      navigate("/products");
-    } else {
-      setEmail("");
-      setPassword("");
-      setError(true);
-    }
-  };
-  const loginHandler = async (loginDetails) => {
-    try {
-      const response = await axios.post("/api/auth/login", loginDetails);
-      localStorage.setItem("token", response.data.encodedToken);
-    } catch (error) {
-      console.log(error);
-    }
-    handleLogin();
+  const { LoginHandler, user } = useAuth();
+  const guestHandler = () => {
+    setEmail("johndoe@gmail.com");
+    setPassword("johnDoe123");
   };
   return (
     <main>
       <Header />
       <section className="form-wrapper validation">
         <form className="form">
+          <h1 className="heading-form">Sign In</h1>
           <label className="form-label">
-            {" "}
-            E-mail
             <input
               type="text"
               name="email-id"
-              placeholder="e-mail"
+              placeholder="Email"
               value={email}
               className="form-input"
               onChange={(event) => setEmail(event.target.value)}
             />
           </label>
           <label className="form-label">
-            {" "}
-            Password
             <input
-              type="text"
+              type="password"
               name="password"
-              placeholder="password"
+              placeholder="Password"
               className="form-input"
               value={password}
               onChange={(event) => setPassword(event.target.value)}
             />
           </label>
-          {error && <h1>something went wrong</h1>}
+          <h4 className="guest-button" onClick={() => guestHandler()}>
+            Guest Login?
+          </h4>
           <button
             className="button button-primary button-form"
             onClick={(event) => {
               event.preventDefault();
               email.length !== 0 &&
                 password.length !== 0 &&
-                loginHandler({ email: email, password: password });
+                LoginHandler({ email: email, password: password });
             }}
           >
-            LOGIN
+            Sign In
           </button>
-          <button
-            className="button button-secondary button-form"
-            onClick={(event) => {
-              event.preventDefault();
-              loginHandler({
-                email: "johndoe@gmail.com",
-                password: "johnDoe123",
-              });
-            }}
-          >
-            Guest Login
-          </button>
+          <div className="flex-row">
+            <h5>New User?</h5>
+            <Link to="/SignUp">
+              {" "}
+              <h5 className="signUp-button">SignUp Now</h5>
+            </Link>
+          </div>
         </form>
       </section>
     </main>

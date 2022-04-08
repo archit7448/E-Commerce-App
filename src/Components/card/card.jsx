@@ -8,10 +8,17 @@ import {
 } from "../../reducers/filter";
 import "./card.css";
 export const Card = () => {
-  const { state, dispatch } = useData();
+  const {
+    products,
+    cart,
+    wishlist,
+    dispatch,
+    sortBy,
+    category,
+    ratings,
+    price,
+  } = useData();
   const token = localStorage.getItem("token");
-  const { products, filter, cart, wishlist } = state;
-  const { sortBy, category, ratings, price } = filter;
   const sortedData = SortedFunction(products, sortBy);
   const categoryData = CategoryFilter(sortedData, category);
   const RatingData = RatingFilter(categoryData, ratings);
