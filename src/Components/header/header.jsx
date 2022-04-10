@@ -1,19 +1,13 @@
 import { ReactComponent as Logo } from "../../assets/logo.svg";
 import { AiOutlineShoppingCart, AiOutlineHeart } from "react-icons/ai";
 import { FaUserAlt } from "react-icons/fa";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import "./header.css";
 import { useData } from "../../context/Data";
 export const Header = () => {
-  const { state } = useData();
-  const { cart, wishlist } = state;
+  let location = useLocation();
+  const { cart, wishlist, search, dispatch } = useData();
   const token = localStorage.getItem("token");
-  const navigate = useNavigate();
-  const handleLogout = () => {
-    navigate("/");
-    localStorage.removeItem("token");
-    localStorage.removeItem("user");
-  };
   return (
     <header className="navigation navigation-component">
       <Link to="/">
@@ -22,6 +16,19 @@ export const Header = () => {
           <Logo className="logo" />
         </div>
       </Link>
+      {location.pathname === "/products" && (
+        <div className="input-wrapper">
+          <input
+            type="text"
+            className="input-search"
+            placeholder="...search"
+            value={search}
+            onChange={(event) =>
+              dispatch({ type: "UPDATE_SEARCH", payload: event.target.value })
+            }
+          />
+        </div>
+      )}
       <div className="login-cart">
         {token !== null ? (
           <Link to="/Cart">

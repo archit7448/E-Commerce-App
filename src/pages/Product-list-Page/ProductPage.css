@@ -103,9 +103,9 @@ hr {
       "ratings area4"
       "product area3"
       "slider area2"
-      "sort area2"
+      "sort area2";
   }
 }
-.price-color{
+.price-color {
   color: var(--alert-info);
 }

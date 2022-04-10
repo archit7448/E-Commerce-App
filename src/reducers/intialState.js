@@ -10,9 +10,10 @@ export const intialstate = {
       book: false,
     },
     ratings: 0,
-    price:1000
+    price: 1000,
   },
-  encodedToken : localStorage.getItem("token"),
-  cart:[],
-  wishlist:[]
+  encodedToken: localStorage.getItem("token"),
+  cart: [],
+  wishlist: [],
+  search: "",
 };

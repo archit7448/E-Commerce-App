@@ -4,10 +4,8 @@ import {
   IncrementOperater,
   DecrementOperater,
 } from "./Cart";
-import { AddToWishlist,RemoveFromWishlist } from "./wishlist";
+import { AddToWishlist, RemoveFromWishlist } from "./wishlist";
 import { intialstate } from "./intialState";
-
-
 
 export const reducer = (state, action) => {
   const { filter } = state;
@@ -52,6 +50,8 @@ export const reducer = (state, action) => {
       return IncrementOperater(state, action.payload);
     case "DECREMENT_PRODUCT":
       return DecrementOperater(state, action.payload);
+    case "UPDATE_SEARCH":
+      return { ...state, search: action.payload };
     default:
       return state;
   }
