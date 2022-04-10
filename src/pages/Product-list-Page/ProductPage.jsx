@@ -12,7 +12,8 @@ export const ProductPage = () => {
   const [showfilter, setShowFilter] = useState(false);
   return (
     <main>
-      <Header />
+      <Header  />
+      <div></div>
       <section className="product-heading">
         <button
           className="button-filter"

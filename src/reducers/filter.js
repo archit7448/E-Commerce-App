@@ -16,16 +16,29 @@ export const CategoryFilter = (products, category) => {
     ? products
     : products.filter(({ category }) => {
         const getData = (category) => {
-          return categoryArray.filter(value => value === category);
+          return categoryArray.filter((value) => value === category);
         };
         return getData(category).length === 0 ? false : true;
       });
 };
 
-export const RatingFilter = (products,ratingState) => {
-    return ratingState === 0 ?  products : [...products].filter(({ratings}) => ratings === ratingState)
-} 
+export const RatingFilter = (products, ratingState) => {
+  return ratingState === 0
+    ? products
+    : [...products].filter(({ ratings }) => ratings === ratingState);
+};
 
-export const PriceFilter = (products,Stateprice) => {
-  return Stateprice === 1000 ? products : [...products].filter(({price}) => Number(Stateprice) >= Number(price) )
-}
+export const PriceFilter = (products, Stateprice) => {
+  return Stateprice === 1000
+    ? products
+    : [...products].filter(({ price }) => Number(Stateprice) >= Number(price));
+};
+
+export const SearchFilter = (products, search) => {
+  return search === ""
+    ? products
+    : [...products].filter(
+        ({ title }) =>
+          title.toLowerCase().slice(0, search.length) === search.toLowerCase()
+      );
+};

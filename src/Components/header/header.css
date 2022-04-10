@@ -30,8 +30,8 @@
   font-size: 4rem;
   cursor: pointer;
 }
-.login-cart{
-    align-items: center;
+.login-cart {
+  align-items: center;
 }
 .cart-log {
   font-size: 2rem;
@@ -55,4 +55,10 @@
 .button-login {
   font-size: 3rem;
   color: var(--color-neon-blue);
+}
+.input-search {
+  border: 2px solid var(--color-black);
+  padding: 1rem 2rem;
+  font-size: 2rem;
+  border-radius: 24px;
 }

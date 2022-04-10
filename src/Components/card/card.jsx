@@ -1,10 +1,11 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useData } from "../../context/Data";
 import {
   CategoryFilter,
   SortedFunction,
   RatingFilter,
   PriceFilter,
+  SearchFilter,
 } from "../../reducers/filter";
 import "./card.css";
 export const Card = () => {
@@ -17,17 +18,24 @@ export const Card = () => {
     category,
     ratings,
     price,
+    search,
   } = useData();
+  const navigate = useNavigate();
   const token = localStorage.getItem("token");
   const sortedData = SortedFunction(products, sortBy);
   const categoryData = CategoryFilter(sortedData, category);
   const RatingData = RatingFilter(categoryData, ratings);
   const PriceData = PriceFilter(RatingData, price);
-  return PriceData.map((products) => {
+  const SearchData = SearchFilter(PriceData, search);
+  return SearchData.map((products) => {
     const { _id, title, produced, price, description, image, ratings } =
       products;
     return (
-      <div className="card-wrapper  card-cart" key={_id}>
+      <div
+        className="card-wrapper card-cart"
+        key={_id}
+        onClick={() => navigate(`/product/${_id}`)}
+      >
         <img src={image} alt={title} />
         <div className="content-wrapper">
           <h1 className="card-heading-main">{title}</h1>
@@ -38,14 +46,16 @@ export const Card = () => {
           <div className="card-button-wrapper">
             {!cart.find((cartItem) => cartItem._id === products._id) ? (
               token !== null ? (
-                <button
-                  className="button button-primary card-button "
-                  onClick={() =>
-                    dispatch({ type: "ADD_TO_CART", payload: products })
-                  }
-                >
-                  ADD TO CART
-                </button>
+                <Link to="/products">
+                  <button
+                    className="button button-primary card-button "
+                    onClick={() =>
+                      dispatch({ type: "ADD_TO_CART", payload: products })
+                    }
+                  >
+                    ADD TO CART
+                  </button>
+                </Link>
               ) : (
                 <Link to="/signIn">
                   <button className="button button-primary card-button">
@@ -68,14 +78,16 @@ export const Card = () => {
             )}
             {!wishlist.find((cartItem) => cartItem._id === products._id) ? (
               token !== null ? (
-                <button
-                  className="button button-secondary card-button "
-                  onClick={() =>
-                    dispatch({ type: "ADD_TO_WISHLIST", payload: products })
-                  }
-                >
-                  WISHLIST
-                </button>
+                <Link to="/products">
+                  <button
+                    className="button button-secondary card-button "
+                    onClick={() =>
+                      dispatch({ type: "ADD_TO_WISHLIST", payload: products })
+                    }
+                  >
+                    WISHLIST
+                  </button>
+                </Link>
               ) : (
                 <Link to="/signIn">
                   <button className="button button-secondary card-button">
