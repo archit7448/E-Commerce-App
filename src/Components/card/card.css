@@ -75,3 +75,6 @@
   border: 1px solid var(--alert-error);
   color: var(--alert-error);
 }
+.card-button-wrapper .flex-row  button{
+  margin: 0 1rem;
+}

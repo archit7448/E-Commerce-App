@@ -52,6 +52,8 @@ export const reducer = (state, action) => {
       return DecrementOperater(state, action.payload);
     case "UPDATE_SEARCH":
       return { ...state, search: action.payload };
+    case "UPDATE_COUPON_PRICE":
+      return { ...state, couponPrice: action.payload };
     default:
       return state;
   }

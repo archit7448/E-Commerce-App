@@ -1,19 +1,88 @@
 .place-order {
-    box-shadow: 1px 2px 2px 2px var(--color-box-shadow);
-    padding: 3rem;
-    margin: 0 auto;
-    width: fit-content;
-    height: fit-content;
-    line-height: 2.5em;
-  }
-  .productPage-wrapper{
+  box-shadow: 1px 2px 2px 2px var(--color-box-shadow);
+  padding: 3rem;
+  margin: 0 auto;
+  width: fit-content;
+  height: fit-content;
+  line-height: 2.5em;
+}
+.productPage-wrapper {
+  display: grid;
+  position: relative;
+  grid-template-columns: 1fr 1fr;
+}
+.button-place-order {
+  width: 100%;
+  padding: 1rem;
+  margin-top: 2rem;
+}
+.button-coupon {
+  font-size: 1.3rem;
+  padding: 0rem 1rem;
+  height: 3rem;
+  align-self: center;
+  margin: 0 1rem;
+}
+.overlay-coupon {
+  position: fixed;
+  width: 35rem;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  height: fit-content;
+  align-items: center;
+  left: 50%;
+  transform: translate(-50%, 20%);
+  box-shadow: 1px 2px 13px 2px var(--color-box-shadow);
+}
+.check-button-wrapper {
+  display: flex;
+  margin: 2rem;
+  width: fit-content;
+  padding: 1rem 2rem;
+  border: 1px solid var(--color-grey);
+}
+.check-input {
+  font-size: 1.6rem;
+}
+.check-input:focus {
+  outline: 0px;
+}
+.check-button {
+  color: var(--color-neon-blue);
+  font-weight: 900;
+  cursor: pointer;
+  background-color: var(--color-white);
+}
+.check-button:focus {
+  outline: 0px;
+}
+.coupon-text-container {
+  width: 100%;
+  display: flex;
+  height: 15rem;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1rem 8px;
+  background-color: #f4f4f5;
+}
+.button-apply-coupon {
+  width: 12rem;
+  margin: 2rem;
+  font-size: 1.6rem;
+}
+.cancel-coupon-container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  cursor: pointer;
+}
+.text-red {
+  color: var(--alert-error);
+}
+@media screen and (max-width: 600px) {
+  .productPage-wrapper {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
   }
-  @media screen and (max-width: 600px) {
-     .productPage-wrapper{
-       display: grid;
-       grid-template-columns: 1fr;
-     }
-  }
-  
+}

@@ -31,18 +31,41 @@ export const Card = () => {
     const { _id, title, produced, price, description, image, ratings } =
       products;
     return (
-      <div
-        className="card-wrapper card-cart"
-        key={_id}
-        onClick={() => navigate(`/product/${_id}`)}
-      >
-        <img src={image} alt={title} />
+      <div className="card-wrapper card-cart" key={_id}>
+        <img
+          src={image}
+          alt={title}
+          onClick={() => navigate(`/product/${_id}`)}
+        />
         <div className="content-wrapper">
-          <h1 className="card-heading-main">{title}</h1>
-          <h4 className="card-heading-two">{produced}</h4>
-          <h2 className="card-price">₹ {price}</h2>
-          <h4 className="card-ratings"> ratings:{ratings}</h4>
-          <p className="card-para">{description}</p>
+          <h1
+            className="card-heading-main"
+            onClick={() => navigate(`/product/${_id}`)}
+          >
+            {title}
+          </h1>
+          <h4
+            className="card-heading-two"
+            onClick={() => navigate(`/product/${_id}`)}
+          >
+            {produced}
+          </h4>
+          <h2
+            className="card-price"
+            onClick={() => navigate(`/product/${_id}`)}
+          >
+            ₹ {price}
+          </h2>
+          <h4
+            className="card-ratings"
+            onClick={() => navigate(`/product/${_id}`)}
+          >
+            {" "}
+            ratings:{ratings}
+          </h4>
+          <p className="card-para" onClick={() => navigate(`/product/${_id}`)}>
+            {description}
+          </p>
           <div className="card-button-wrapper">
             {!cart.find((cartItem) => cartItem._id === products._id) ? (
               token !== null ? (

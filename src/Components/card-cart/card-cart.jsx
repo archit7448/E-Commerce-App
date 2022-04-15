@@ -39,30 +39,34 @@ export const CardCart = () => {
                   -
                 </button>
               </div>
-              <button
-                className="button button-primary"
-                onClick={() => dispatch({ type: "REMOVE_CART", payload: _id })}
-              >
-                REMOVE
-              </button>
-              {!wishlist.find(
-                (WishlistItem) => WishlistItem._id === products._id
-              ) ? (
+              <div className="flex-row">
                 <button
-                  className="button button-secondary card-button "
+                  className="button button-primary"
                   onClick={() =>
-                    dispatch({ type: "ADD_TO_WISHLIST", payload: products })
+                    dispatch({ type: "REMOVE_CART", payload: _id })
                   }
                 >
-                  WISHLIST
+                  REMOVE
                 </button>
-              ) : (
-                <Link to="/Wishlist">
-                  <button className="button button-secondary card-button wishlist-button">
-                    IN WISHLIST
+                {!wishlist.find(
+                  (WishlistItem) => WishlistItem._id === products._id
+                ) ? (
+                  <button
+                    className="button button-secondary card-button "
+                    onClick={() =>
+                      dispatch({ type: "ADD_TO_WISHLIST", payload: products })
+                    }
+                  >
+                    WISHLIST
                   </button>
-                </Link>
-              )}
+                ) : (
+                  <Link to="/Wishlist">
+                    <button className="button button-secondary card-button wishlist-button">
+                      IN WISHLIST
+                    </button>
+                  </Link>
+                )}
+              </div>
             </div>
           </div>
         </div>
