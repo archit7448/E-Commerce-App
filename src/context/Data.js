@@ -7,8 +7,16 @@ const DataContext = createContext(null);
 
 const DataProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, intialstate);
-  const { encodedToken, products, cart, wishlist, filter, categories, search } =
-    state;
+  const {
+    encodedToken,
+    products,
+    cart,
+    wishlist,
+    filter,
+    categories,
+    search,
+    couponPrice,
+  } = state;
   const { sortBy, category, ratings, price } = filter;
   useEffect(() => {
     const productData = async () => {
@@ -84,6 +92,7 @@ const DataProvider = ({ children }) => {
         ratings,
         price,
         search,
+        couponPrice,
       }}
     >
       {children}
