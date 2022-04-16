@@ -15,7 +15,6 @@ export const CartPage = () => {
     );
     return totalPrice.reduce((acc, curr) => acc + curr, 0);
   };
-  console.log(TotalPrice);
   const ApplyHandler = (coupon) => {
     if (coupon === "Mindify300" && TotalPrice() > 1000) {
       dispatch({ type: "UPDATE_COUPON_PRICE", payload: 300 });
