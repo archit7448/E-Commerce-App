@@ -1,10 +1,3 @@
-import {
-  AddToCart,
-  RemoveFromCart,
-  IncrementOperater,
-  DecrementOperater,
-} from "./Cart";
-import { AddToWishlist, RemoveFromWishlist } from "./wishlist";
 import { intialstate } from "./intialState";
 
 export const reducer = (state, action) => {
@@ -34,26 +27,18 @@ export const reducer = (state, action) => {
       return { ...state, filter: intialstate.filter };
     case "PRICE_FILTER":
       return { ...state, filter: { ...filter, price: action.payload } };
-    case "ADD_TO_INTIAL_CART":
-      return { ...state, cart: [...action.payload] };
-    case "ADD_TO_CART":
-      return AddToCart(state, action.payload);
-    case "ADD_TO_INTIAL_WISHLIST":
-      return { ...state, wishlist: [...action.payload] };
-    case "ADD_TO_WISHLIST":
-      return AddToWishlist(state, action.payload);
-    case "REMOVE_CART":
-      return RemoveFromCart(state, action.payload);
-    case "REMOVE_WISHLIST":
-      return RemoveFromWishlist(state, action.payload);
-    case "INCREMENT_PRODUCT":
-      return IncrementOperater(state, action.payload);
-    case "DECREMENT_PRODUCT":
-      return DecrementOperater(state, action.payload);
+    case "UPDATE_CART":
+      return { ...state, cart: action.payload };
+    case "UPDATE_WISHLIST":
+      return { ...state, wishlist: action.payload };
     case "UPDATE_SEARCH":
       return { ...state, search: action.payload };
     case "UPDATE_COUPON_PRICE":
       return { ...state, couponPrice: action.payload };
+    case "UPDATE_FILTER_STATE":
+      return { ...state, isFilter: action.payload };
+    case "UPDATE_ORDER":
+      return { ...state, order: [...state.order,action.payload] };
     default:
       return state;
   }

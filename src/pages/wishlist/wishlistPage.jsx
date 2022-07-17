@@ -1,14 +1,18 @@
-import { Header } from "../../Components/header/header";
+import { Card, Header, WishlistCard } from "../../Components/index";
 import { useData } from "../../context/Data";
-import { WishlistCard } from "../../Components/wishlist-card/wishlist-card";
 export const WishListPage = () => {
-  const { state, dispatch } = useData()
-  const { wishlist } = state;
+  const { wishlist } = useData();
   return (
     <main>
       <Header />
       <section>
-        <WishlistCard/>
+        {wishlist.length > 0 ? (
+          wishlist.map((products) => (
+            <Card key={products._id} prop={{ products, isWishlist: true }} />
+          ))
+        ) : (
+          <> </>
+        )}
       </section>
     </main>
   );

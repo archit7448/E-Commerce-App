@@ -1,5 +1,6 @@
 import { createContext, useContext, useEffect, useReducer } from "react";
 import { v4 as uuid } from "uuid";
+import { notificationSuccess } from "../utility/notify";
 const IntialState = {
   stateIndia: [
     "Andaman and Nicobar Islands",
@@ -46,12 +47,15 @@ const IntialState = {
       city: "Kanpur",
       address: "F-673 Ratan Lal Nagar",
       state: "Uttar Pradesh",
+      phoneNumber: "9235662323",
       _id: uuid(),
       display: true,
     },
   ],
+  defaultAddress: null,
 };
-const ToggleDisplay = (state, payload) => {
+
+const toggleDisplay = (state, payload) => {
   const { Address } = state;
   return {
     ...state,
@@ -63,7 +67,7 @@ const ToggleDisplay = (state, payload) => {
   };
 };
 
-const UpdateAddress = (state, payload) => {
+const updateAddress = (state, payload) => {
   const { Address } = state;
   return {
     ...state,
@@ -75,11 +79,20 @@ const UpdateAddress = (state, payload) => {
   };
 };
 
-const DeleteAddress = (state, payload) => {
+const deleteAddress = (state, payload) => {
   const { Address } = state;
   return {
     ...state,
     Address: Address.filter((address) => address._id !== payload._id),
+  };
+};
+
+const setDefaultAddress = (state, payload) => {
+  const { Address } = state;
+  notificationSuccess("Default Address");
+  return {
+    ...state,
+    defaultAddress: Address.filter((address) => address._id === payload._id),
   };
 };
 
@@ -94,11 +107,13 @@ const reducer = (state, action) => {
         ],
       };
     case "TOGGLE_DISPLAY":
-      return ToggleDisplay(state, action.payload);
+      return toggleDisplay(state, action.payload);
     case "UPDATE_ADDRESS":
-      return UpdateAddress(state, action.payload);
+      return updateAddress(state, action.payload);
     case "DELETE_ADDRESS":
-      return DeleteAddress(state, action.payload);
+      return deleteAddress(state, action.payload);
+    case "SELECT_DEFAULT_ADDRESS":
+      return setDefaultAddress(state, action.payload);
     default:
       return { state };
   }
@@ -108,9 +123,11 @@ const AddressContext = createContext(null);
 
 const AddressProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, IntialState);
-  const { stateIndia, Address } = state;
+  const { stateIndia, Address, defaultAddress } = state;
   return (
-    <AddressContext.Provider value={{ dispatch, stateIndia, Address }}>
+    <AddressContext.Provider
+      value={{ dispatch, stateIndia, Address, defaultAddress }}
+    >
       {children}
     </AddressContext.Provider>
   );

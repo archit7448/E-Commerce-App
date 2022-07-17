@@ -16,6 +16,7 @@ const DataProvider = ({ children }) => {
     categories,
     search,
     couponPrice,
+    isFilter,
   } = state;
   const { sortBy, category, ratings, price } = filter;
   useEffect(() => {
@@ -50,7 +51,7 @@ const DataProvider = ({ children }) => {
             authorization: encodedToken,
           },
         });
-        dispatch({ type: "ADD_TO_INTIAL_CART", payload: response.data.cart });
+        dispatch({ type: "UPDATE_CART", payload: response.data.cart });
       } catch (error) {
         console.log(error);
       }
@@ -63,7 +64,7 @@ const DataProvider = ({ children }) => {
           },
         });
         dispatch({
-          type: "ADD_TO_INTIAL_WISHLIST",
+          type: "UPDATE_WISHLIST",
           payload: response.data.wishlist,
         });
       } catch (error) {
@@ -93,6 +94,8 @@ const DataProvider = ({ children }) => {
         price,
         search,
         couponPrice,
+        isFilter,
+        order: state.order,
       }}
     >
       {children}

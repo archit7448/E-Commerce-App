@@ -1,40 +1,35 @@
 import axios from "axios";
 import { notificationError, notificationSuccess } from "../utility/notify";
-export const AddToWishlist = (state, product) => {
-  (async (product) => {
-    try {
-      const response = await axios.post(
-        "/api/user/wishlist",
-        { product },
-        {
-          headers: {
-            authorization: localStorage.getItem("token"),
-          },
-        }
-      );
-      notificationSuccess("ADDED TO WISHLIST");
-    } catch (error) {
-      console.log(error);
-      notificationError("GET FAILED");
-    }
-  })(product);
-  return { ...state, wishlist: [...state.wishlist, product] };
-};
-
-export const RemoveFromWishlist = (state, id) => {
-  (async (id) => {
-    try {
-      const response = await axios.delete(`/api/user/wishlist/:${id}`, {
+export const addToWishlist = async (dispatch, product) => {
+  try {
+    const response = await axios.post(
+      "/api/user/wishlist",
+      { product },
+      {
         headers: {
           authorization: localStorage.getItem("token"),
         },
-      });
-      notificationSuccess("REMOVED FROM WISHLIST");
-    } catch (error) {
-      console.log(error);
-      notificationError("GET FAILED");
-    }
-  })(id);
-  const newWishlist = state.wishlist.filter((product) => product._id !== id);
-  return { ...state, wishlist: [...newWishlist] };
+      }
+    );
+    dispatch({ type: "UPDATE_WISHLIST", payload: response.data.wishlist });
+    notificationSuccess("ADDED TO WISHLIST");
+  } catch (error) {
+    console.log(error);
+    notificationError("GET FAILED");
+  }
+};
+
+export const removeFromWishlist = async (dispatch, id) => {
+  try {
+    const response = await axios.delete(`/api/user/wishlist/${id}`, {
+      headers: {
+        authorization: localStorage.getItem("token"),
+      },
+    });
+    dispatch({ type: "UPDATE_WISHLIST", payload: response.data.wishlist });
+    notificationSuccess("REMOVED FROM WISHLIST");
+  } catch (error) {
+    console.log(error);
+    notificationError("GET FAILED");
+  }
 };

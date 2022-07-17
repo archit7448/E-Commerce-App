@@ -1,28 +1,51 @@
-import { Header } from "../../Components/header/header";
-import "./ProductPage.css";
-import { Card } from "../../Components/card/card";
-import { ProductFilter } from "../../Components/ProductFilter/ProductFilter";
-import { Sort } from "../../Components/sort/sort";
-import { RatingsComponent } from "../../Components/ratings/ratings";
+import {
+  Header,
+  Card,
+  ProductFilter,
+  Sort,
+  RatingsComponent,
+} from "../../Components/index";
+import {
+  CategoryFilter,
+  SortedFunction,
+  RatingFilter,
+  PriceFilter,
+  SearchFilter,
+} from "../../reducers/filter";
+import "./ProductListPage.css";
 import { useData } from "../../context/Data";
 import { HiOutlineFilter } from "react-icons/hi";
-import { useState } from "react";
 export const ProductPage = () => {
-  const { dispatch, price } = useData();
-  const [showfilter, setShowFilter] = useState(false);
+  const {
+    products,
+    dispatch,
+    sortBy,
+    category,
+    ratings,
+    price,
+    search,
+    isFilter,
+  } = useData();
+  const sortedData = SortedFunction(products, sortBy);
+  const categoryData = CategoryFilter(sortedData, category);
+  const RatingData = RatingFilter(categoryData, ratings);
+  const PriceData = PriceFilter(RatingData, price);
+  const SearchData = SearchFilter(PriceData, search);
   return (
     <main>
-      <Header  />
+      <Header />
       <div></div>
       <section className="product-heading">
         <button
           className="button-filter"
-          onClick={() => setShowFilter((state) => !state)}
+          onClick={() =>
+            dispatch({ type: "UPDATE_FILTER_STATE", payload: !isFilter })
+          }
         >
           Filters
           <HiOutlineFilter className="filter-icon" />
         </button>
-        {showfilter && (
+        {isFilter && (
           <div className="filters-wrapper">
             <button
               className="clear-button button button-secondary"
@@ -55,7 +78,9 @@ export const ProductPage = () => {
         )}
         <hr />
         <div className="card-container">
-          <Card />
+          {SearchData.map((products) => {
+            return <Card key={products._id} prop={{ products }} />;
+          })}
         </div>
       </section>
     </main>

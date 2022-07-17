@@ -13,17 +13,17 @@ export const categories = [
   },
   {
     _id: uuid(),
-    categoryName: "MOVIES",
-    image: Images.movie1 ,
+    categoryName: "MOVIE",
+    image: Images.movie1,
   },
   {
     _id: uuid(),
     categoryName: "FOOD",
-    image :Images.food1 ,
+    image: Images.food1,
   },
   {
     _id: uuid(),
-    categoryName: "GYM EQUIPMENT",
-    image: Images.gym1 ,
+    categoryName: "GYM",
+    image: Images.gym1,
   },
 ];

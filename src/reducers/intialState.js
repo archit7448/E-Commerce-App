@@ -16,5 +16,7 @@ export const intialstate = {
   cart: [],
   wishlist: [],
   search: "",
-  couponPrice:0
+  couponPrice: 0,
+  isFilter: false,
+  order: [],
 };

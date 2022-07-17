@@ -1,6 +1,5 @@
-import { Header } from "../../Components/header/header";
 import mainImage from "../../assets/homepage.png";
-import { Genres } from "../../Components/genres/cateories";
+import { Header, Genres } from "../../Components/index";
 import "./Homepage.css";
 import { Link } from "react-router-dom";
 export const HomePage = () => {

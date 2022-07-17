@@ -1,139 +1,139 @@
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useData } from "../../context/Data";
 import {
-  CategoryFilter,
-  SortedFunction,
-  RatingFilter,
-  PriceFilter,
-  SearchFilter,
-} from "../../reducers/filter";
+  addToCart,
+  decrementOperater,
+  incrementOperater,
+  removeFromCart,
+} from "../../reducers/Cart";
+import { addToWishlist, removeFromWishlist } from "../../reducers/wishlist";
 import "./card.css";
-export const Card = () => {
-  const {
-    products,
-    cart,
-    wishlist,
-    dispatch,
-    sortBy,
-    category,
-    ratings,
-    price,
-    search,
-  } = useData();
+export const Card = ({ prop }) => {
+  const { products, isCart, isWishlist } = prop;
+  const { cart, wishlist, dispatch } = useData();
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
-  const sortedData = SortedFunction(products, sortBy);
-  const categoryData = CategoryFilter(sortedData, category);
-  const RatingData = RatingFilter(categoryData, ratings);
-  const PriceData = PriceFilter(RatingData, price);
-  const SearchData = SearchFilter(PriceData, search);
-  return SearchData.map((products) => {
-    const { _id, title, produced, price, description, image, ratings } =
-      products;
-    return (
-      <div className="card-wrapper card-cart" key={_id}>
-        <img
-          src={image}
-          alt={title}
-          onClick={() => navigate(`/product/${_id}`)}
-        />
-        <div className="content-wrapper">
-          <h1
-            className="card-heading-main"
-            onClick={() => navigate(`/product/${_id}`)}
-          >
-            {title}
-          </h1>
-          <h4
-            className="card-heading-two"
-            onClick={() => navigate(`/product/${_id}`)}
-          >
-            {produced}
-          </h4>
-          <h2
-            className="card-price"
-            onClick={() => navigate(`/product/${_id}`)}
-          >
-            ₹ {price}
-          </h2>
-          <h4
-            className="card-ratings"
-            onClick={() => navigate(`/product/${_id}`)}
-          >
-            {" "}
-            ratings:{ratings}
-          </h4>
-          <p className="card-para" onClick={() => navigate(`/product/${_id}`)}>
-            {description}
-          </p>
-          <div className="card-button-wrapper">
-            {!cart.find((cartItem) => cartItem._id === products._id) ? (
-              token !== null ? (
-                <Link to="/products">
-                  <button
-                    className="button button-primary card-button "
-                    onClick={() =>
-                      dispatch({ type: "ADD_TO_CART", payload: products })
-                    }
-                  >
-                    ADD TO CART
-                  </button>
-                </Link>
-              ) : (
-                <Link to="/signIn">
-                  <button className="button button-primary card-button">
-                    ADD TO CART
-                  </button>
-                </Link>
-              )
-            ) : token !== null ? (
-              <Link to="/Cart">
-                <button className="button button-primary card-button">
-                  GO TO CART
-                </button>
-              </Link>
-            ) : (
-              <Link to="/signIn">
-                <button className="button button-primary card-button">
-                  ADD TO CART
-                </button>
-              </Link>
-            )}
-            {!wishlist.find((cartItem) => cartItem._id === products._id) ? (
-              token !== null ? (
-                <Link to="/products">
-                  <button
-                    className="button button-secondary card-button "
-                    onClick={() =>
-                      dispatch({ type: "ADD_TO_WISHLIST", payload: products })
-                    }
-                  >
-                    WISHLIST
-                  </button>
-                </Link>
-              ) : (
-                <Link to="/signIn">
-                  <button className="button button-secondary card-button">
-                    WIHSLIST
-                  </button>
-                </Link>
-              )
-            ) : token !== null ? (
-              <Link to="/Wishlist">
-                <button className="button button-secondary card-button wishlist-button">
-                  IN WISHLIST
-                </button>
-              </Link>
-            ) : (
-              <Link to="/signIn">
-                <button className="button button-secondary card-button">
-                  ADD TO CART
-                </button>
-              </Link>
-            )}
+  const { _id, title, produced, price, description, image, ratings, qty } =
+    products;
+  const cartHandler = (e) => {
+    if (token === null) {
+      navigate("/signIn");
+    } else {
+      cart.find((cartItem) => cartItem._id === products._id)
+        ? navigate("/cart")
+        : addToCart(dispatch, products);
+    }
+    e.stopPropagation();
+  };
+  const wishlistHandler = (e) => {
+    if (token === null) {
+      navigate("/signIn");
+    } else {
+      wishlist.find((wishlistItem) => wishlistItem._id === products._id)
+        ? navigate("/wishlist")
+        : addToWishlist(dispatch, products);
+    }
+    e.stopPropagation();
+  };
+  const cartRemoveHandler = (e) => {
+    removeFromCart(dispatch, _id);
+    e.stopPropagation();
+  };
+  const increaseHandler = (e) => {
+    incrementOperater(dispatch, _id);
+    e.stopPropagation();
+  };
+  const decreaseHandler = (e) => {
+    decrementOperater(dispatch, _id);
+    e.stopPropagation();
+  };
+
+  const wishlistRemoveHandler = (e) => {
+    removeFromWishlist(dispatch, _id);
+    e.stopPropagation();
+  };
+  return (
+    <div
+      className="card-wrapper card-cart"
+      key={_id}
+      onClick={() => navigate(`/product/${_id}`)}
+    >
+      <img src={image} alt={title} />
+      <div className="content-wrapper">
+        <h1 className="card-heading-main">{title}</h1>
+        <h4 className="card-heading-two">{produced}</h4>
+        <h2 className="card-price">₹ {price}</h2>
+        <h4 className="card-ratings"> ratings:{ratings}</h4>
+        <p className="card-para">{description}</p>
+        {isCart ? (
+          <div className="quantity-container">
+            <button
+              className="button button-secondary"
+              onClick={(event) =>
+                qty > 1 ? decreaseHandler(event) : cartRemoveHandler(event)
+              }
+            >
+              -
+            </button>
+            <h2 className="card-ratings">{qty}</h2>
+            <button
+              className="button button-secondary"
+              onClick={(event) => increaseHandler(event)}
+            >
+              +
+            </button>
           </div>
+        ) : (
+          <> </>
+        )}
+        <div className="card-button-wrapper">
+          {isCart ? (
+            <button
+              className="button button-primary card-button "
+              onClick={(event) => cartRemoveHandler(event)}
+            >
+              REMOVE
+            </button>
+          ) : isWishlist ? (
+            <button
+              className="button button-primary card-button "
+              onClick={(event) => wishlistRemoveHandler(event)}
+            >
+              REMOVE
+            </button>
+          ) : (
+            <button
+              className="button button-primary card-button "
+              onClick={(event) => cartHandler(event)}
+            >
+              {cart.find((cartItem) => cartItem._id === products._id)
+                ? "GO TO CART"
+                : "ADD TO CART"}
+            </button>
+          )}
+          {isWishlist ? (
+            <button
+              className="button button-secondary card-button "
+              onClick={(event) => cartHandler(event)}
+            >
+              {cart.find((cartItem) => cartItem._id === products._id)
+                ? "GO TO CART"
+                : "ADD TO CART"}
+            </button>
+          ) : (
+            <button
+              className="button button-secondary card-button "
+              onClick={(event) => wishlistHandler(event)}
+            >
+              {wishlist.find(
+                (wishlistItem) => wishlistItem._id === products._id
+              )
+                ? "IN WISHLIST"
+                : "WISHLIST"}
+            </button>
+          )}
         </div>
       </div>
-    );
-  });
+    </div>
+  );
 };

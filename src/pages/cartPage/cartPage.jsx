@@ -1,20 +1,39 @@
-import { Header } from "../../Components/header/header";
-import { CardCart } from "../../Components/card-cart/card-cart";
+import { Header, Card } from "../../Components/index";
 import { useData } from "../../context/Data";
 import "./cartPage.css";
-import { useState } from "react";
-import { notificationInfo } from "../../utility/notify";
+import { useState, useEffect } from "react";
+import {
+  notificationError,
+  notificationInfo,
+  notificationSuccess,
+  notifyMessage,
+} from "../../utility/notify";
+import { MdOutlineCancel } from "react-icons/md";
+import { useNavigate } from "react-router-dom";
+import { useAddress } from "../../context/address";
+import { emptyCart } from "../../reducers/Cart";
 export const CartPage = () => {
   const { cart, couponPrice, dispatch } = useData();
   const [error, setError] = useState(false);
   const [coupon, setCoupon] = useState("");
+  const [paymentId, setPaymentId] = useState("");
   const [show, setShow] = useState(false);
+  const navigate = useNavigate();
+  const { defaultAddress } = useAddress();
+
+  // Calculate Total Price
+
   const TotalPrice = () => {
     const totalPrice = cart.map(
-      ({ price, quantity }) => Number(price) * Number(quantity)
+      ({ price, qty }) => Number(price) * Number(qty)
     );
     return totalPrice.reduce((acc, curr) => acc + curr, 0);
   };
+
+  /**
+   * Manage Coupons
+   */
+
   const ApplyHandler = (coupon) => {
     if (coupon === "Mindify300" && TotalPrice() > 1000) {
       dispatch({ type: "UPDATE_COUPON_PRICE", payload: 300 });
@@ -44,12 +63,85 @@ export const CartPage = () => {
       setCoupon("");
     }
   };
+
+  /**
+   * Order handler => Manage orders
+   */
+
+  const orderHandler = () => {
+    if (defaultAddress === null) {
+      navigate("/profile", { state: "/profile" });
+      notificationInfo("Select Default Address");
+    } else {
+      placeOrderHandler(
+        TotalPrice() - (100 + couponPrice) + 50,
+        defaultAddress
+      );
+    }
+  };
+
+  useEffect(() => {
+    if (paymentId !== "") {
+      emptyCart(dispatch, cart, couponPrice);
+    }
+  }, [paymentId]);
+  /**
+   * Razorpay handler =>  manage payment gateway
+   */
+
+  const initializeRazorpay = (src) => {
+    return new Promise((resolve) => {
+      const script = document.createElement("script");
+      script.src = src;
+      script.onload = () => {
+        resolve(true);
+      };
+      script.onerror = () => {
+        resolve(false);
+      };
+      document.body.appendChild(script);
+    });
+  };
+
+  const placeOrderHandler = async (amount, defaultAddress) => {
+    const response = await initializeRazorpay(
+      "https://checkout.razorpay.com/v1/checkout.js"
+    );
+    if (!response) {
+      notificationError("not working");
+      return;
+    }
+
+    const options = {
+      key: "rzp_test_16vW92FydTHK1Z",
+      currency: "INR",
+      amount: amount * 100,
+      name: "Mindify Cart",
+      handler: function (response) {
+        setPaymentId(response.razorpay_payment_id);
+      },
+      prefill: {
+        name: defaultAddress.name,
+        email: "architsingh1064@gmail.com",
+        contact: defaultAddress.phoneNumber,
+        method: "netbanking",
+      },
+    };
+
+    const paymentObject = new window.Razorpay(options);
+    paymentObject.open();
+  };
+
   return (
     <main>
       <Header />
       <section className="productPage-wrapper">
         <div>
-          <CardCart />
+          {cart.map((products) => {
+            return (
+              <Card key={products._id} prop={{ products, isCart: true }} />
+            );
+          })}
         </div>
         {cart.length > 0 ? (
           <div className="place-order">
@@ -76,8 +168,11 @@ export const CartPage = () => {
               TOTAL PRICE : ₹{TotalPrice() - (100 + couponPrice) + 50}
             </h1>
             <hr />
-            <button className="button button-primary button-place-order">
-              PLACE ORDER
+            <button
+              className="button button-primary button-place-order"
+              onClick={() => orderHandler()}
+            >
+              {defaultAddress === null ? "Checkout" : "Place Order"}
             </button>
           </div>
         ) : (
@@ -87,8 +182,8 @@ export const CartPage = () => {
           <div className="overlay-coupon">
             <div className="cancel-coupon-container">
               <h3 className="text-xsm text-grey">Coupons</h3>
-              <h3 className="text-grey text-xsm" onClick={() => setShow(false)}>
-                X
+              <h3 className="text-grey text-sm" onClick={() => setShow(false)}>
+                <MdOutlineCancel />
               </h3>
             </div>
             <hr />
