@@ -12,7 +12,7 @@
 https://user-images.githubusercontent.com/87135461/163668279-a3e37f01-9f58-48ae-b8ba-c0a138e6beda.mp4
 
   
-# [Live Website](https://mindifycart.netlify.app/)
+# [Live Website](https://mindify-cart.netlify.app/)
   
 </div>
 
