@@ -11,7 +11,9 @@ export const WishListPage = () => {
             <Card key={products._id} prop={{ products, isWishlist: true }} />
           ))
         ) : (
-          <> </>
+           <div className="flex-center">
+            <h1>EMPTY WISHLIST</h1>
+           </div>
         )}
       </section>
     </main>

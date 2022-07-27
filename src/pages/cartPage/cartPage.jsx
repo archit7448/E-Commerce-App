@@ -176,7 +176,9 @@ export const CartPage = () => {
             </button>
           </div>
         ) : (
-          <div></div>
+          <div>
+            <h1>EMPTY CART</h1>
+          </div>
         )}
         {show && cart.length > 0 && (
           <div className="overlay-coupon">
