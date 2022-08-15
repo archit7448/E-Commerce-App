@@ -35,10 +35,9 @@ export const PriceFilter = (products, Stateprice) => {
 };
 
 export const SearchFilter = (products, search) => {
-  return search === ""
-    ? products
-    : [...products].filter(
-        ({ title }) =>
-          title.toLowerCase().slice(0, search.length) === search.toLowerCase()
-      );
+  const FilterArray = [...products].filter(
+    ({ title }) =>
+      title.toLowerCase().slice(0, search.length) === search.toLowerCase()
+  );
+  return search === "" ? [] : FilterArray.slice(0,3)
 };

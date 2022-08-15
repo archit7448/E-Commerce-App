@@ -1,12 +1,5 @@
-@import url("https://mindify-ui.netlify.app/components/library.css");
-@import url(https://fonts.googleapis.com/css?family=Raleway:400,300,500,700);
-
+@import url("https://fonts.googleapis.com/css?family=Raleway:400,300,500,700");
+@import url("./utility//css/main.css");
 .App {
-  font-family: "Raleway"
-}
-:root{
-  --color-card:#515151 ;
-}
-section{
-  margin-top: 10rem;
+  font-family: "Raleway";
 }

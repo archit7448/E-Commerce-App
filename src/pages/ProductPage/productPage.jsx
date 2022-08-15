@@ -1,22 +1,31 @@
 import { useParams, useNavigate } from "react-router-dom";
-import { Header } from "../../Components/header/header";
-import { useData } from "../../context/Data";
+import { Header } from "../../components/header/header";
+import { useData } from "../../context/data";
 import "./productPage.css";
 import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 import { addToCart } from "../../reducers/Cart";
 import { addToWishlist } from "../../reducers/wishlist";
+import { useState, useEffect } from "react";
+import axios from "axios";
 export const ProductDetail = () => {
-  const { productId } = useParams();
-  const { products, cart, wishlist, dispatch } = useData();
+  const { productName } = useParams();
+  const { cart, wishlist, dispatch } = useData();
   const token = localStorage.getItem("token");
+  const [product, setProductState] = useState([]);
+  const [sizeState, setSizeState] = useState("");
+  const [errorState, setErrorState] = useState(false);
+  const [shakeState, setShakeState] = useState(false);
   const navigate = useNavigate();
-  const product = products.find((product) => product._id === productId);
-  const { title, price, description, image, ratings } = product;
   const cartHandler = () => {
     if (token === null) {
       navigate("/signIn");
+    } else if (sizeState === "") {
+      setErrorState(true);
+      setShakeState(true);
+      setTimeout(() => setShakeState(false), 1000);
     } else {
-      cart.find((cartItem) => cartItem._id === product._id)
+      setErrorState(false);
+      cart.find((cartItem) => cartItem.title === product.title)
         ? navigate("/cart")
         : addToCart(dispatch, product);
     }
@@ -25,11 +34,48 @@ export const ProductDetail = () => {
     if (token === null) {
       navigate("/signIn");
     } else {
-      wishlist.find((wishlistItem) => wishlistItem._id === product._id)
+      wishlist.find((wishlistItem) => wishlistItem.title === product.title)
         ? navigate("/wishlist")
         : addToWishlist(dispatch, product);
     }
   };
+
+  let title, price, description, image, ratings;
+
+  if (product.length !== 0) {
+    ({ title, price, description, image, ratings } = product);
+  }
+
+  // Size Handler
+
+  const sizeHandler = (size) => {
+    setSizeState(() => size);
+    setErrorState(false);
+    setProductState((state) => ({ ...state, size: size }));
+  };
+
+  //ForPlaylist
+
+  useEffect(() => {
+    (async (productName) => {
+      try {
+        const response = await axios.get(`/api/products/${productName}`);
+        setProductState({ ...response.data.product });
+      } catch (error) {
+        console.log(error);
+      }
+    })(productName);
+  }, []);
+  useEffect(() => {
+    (async (productName) => {
+      try {
+        const response = await axios.get(`/api/products/${productName}`);
+        setProductState({ ...response.data.product });
+      } catch (error) {
+        console.log(error);
+      }
+    })(productName);
+  }, [productName]);
   return (
     <main>
       <Header />
@@ -69,14 +115,54 @@ export const ProductDetail = () => {
                 <AiOutlineStar className="ratings" />
               )}
             </div>
+            <h1>Size</h1>
+            <div className={`flex-row ${shakeState ? "shake-wrapper" : ""}`}>
+              <div
+                className={`size-button ${
+                  sizeState === 5 ? "size-selected" : ""
+                } `}
+                onClick={() => sizeHandler(5)}
+              >
+                {" "}
+                5{" "}
+              </div>
+              <div
+                className={`size-button ${
+                  sizeState === 6 ? "size-selected" : ""
+                } `}
+                onClick={() => sizeHandler(6)}
+              >
+                {" "}
+                6{" "}
+              </div>
+              <div
+                className={`size-button ${
+                  sizeState === 7 ? "size-selected" : ""
+                } `}
+                onClick={() => sizeHandler(7)}
+              >
+                {" "}
+                7{" "}
+              </div>
+              <div
+                className={`size-button ${
+                  sizeState === 8 ? "size-selected" : ""
+                } `}
+                onClick={() => sizeHandler(8)}
+              >
+                {" "}
+                8{" "}
+              </div>
+            </div>
+            {errorState && <h6>Please Select Size</h6>}
             <div className="product-id-button-wrapper">
               <button
                 className="button button-primary product-id-button"
                 onClick={() => cartHandler()}
               >
                 {cart.find((cartItem) => cartItem._id === product._id)
-                  ? "GO TO CART"
-                  : "ADD TO CART"}
+                  ? "GO TO BAG"
+                  : "ADD TO BAG"}
               </button>
               <button
                 className="button button-secondary product-id-button"

@@ -1,5 +1,5 @@
-import { useNavigate } from "react-router-dom";
-import { useData } from "../../context/Data";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useData } from "../../context/data";
 import {
   addToCart,
   decrementOperater,
@@ -15,6 +15,7 @@ export const Card = ({ prop }) => {
   const token = localStorage.getItem("token");
   const { _id, title, produced, price, description, image, ratings, qty } =
     products;
+  const location = useLocation();
   const cartHandler = (e) => {
     if (token === null) {
       navigate("/signIn");
@@ -58,13 +59,13 @@ export const Card = ({ prop }) => {
       key={_id}
       onClick={() => navigate(`/product/${_id}`)}
     >
-      <img src={image} alt={title} />
+      {location.pathname !== "/products" && <img src={image} alt={title} />}
       <div className="content-wrapper">
+        {location.pathname === "/products" && <img src={image} alt={title} />}
         <h1 className="card-heading-main">{title}</h1>
         <h4 className="card-heading-two">{produced}</h4>
         <h2 className="card-price">₹ {price}</h2>
         <h4 className="card-ratings"> ratings:{ratings}</h4>
-        <p className="card-para">{description}</p>
         {isCart ? (
           <div className="quantity-container">
             <button

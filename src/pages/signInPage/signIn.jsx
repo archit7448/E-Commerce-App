@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { Header } from "../../Components/header/header";
+import { Header } from "../../components/header/header";
 import { useAuth } from "../../context/auth";
-import "./SignIn.css";
+import "./signIn.css";
 export const SignIn = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");

@@ -1,8 +1,8 @@
-export { HomePage } from "./Homepage/HomePage";
-export { ProductPage } from "./ProductListPage/ProductListPage";
-export { SignIn } from "./SignIn/SignIn";
-export { WishListPage } from "./wishlist/wishlistPage";
+export { HomePage } from "./homePage/homePage";
+export { ProductPage } from "./productListPage/productListPage";
+export { SignIn } from "./signInPage/signIn";
+export { WishListPage } from "./wishlistPage/wishlistPage";
 export { CartPage } from "./cartPage/cartPage";
-export { SignUp } from "./signUp/SignUp";
+export { SignUp } from "./signUpPage/signUp";
 export { ProfilePage } from "./profilePage/profile";
-export { ProductDetail } from "./ProductPage/productPage";
+export { ProductDetail } from "./productPage/productPage";

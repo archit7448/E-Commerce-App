@@ -1,4 +1,4 @@
-import { useData } from "../../context/Data";
+import { useData } from "../../context/data";
 import { AiOutlineDown } from "react-icons/ai";
 import {
   HiOutlineSortAscending,
@@ -12,23 +12,24 @@ export const Sort = () => {
   const buttonSecondary = "button button-product button-secondary";
   return (
     <div className="sort-container">
-      <h1 className="ratings-heading">
-        Sort By Price
-        <AiOutlineDown />{" "}
-      </h1>
+      <h1 className="ratings-heading">Sort By Price</h1>
       <nav className="sort-wrapper">
-        <button
-          className={sortBy === "HIGH_TO_LOW" ? buttonPrimary : buttonSecondary}
-          onClick={() => dispatch({ type: "SORT", payload: "HIGH_TO_LOW" })}
-        >
-          High to low <HiOutlineSortDescending />
-        </button>
-        <button
-          className={sortBy === "LOW_TO_HIGH" ? buttonPrimary : buttonSecondary}
-          onClick={() => dispatch({ type: "SORT", payload: "LOW_TO_HIGH" })}
-        >
-          Low to high <HiOutlineSortAscending />
-        </button>
+        <label>
+          <input
+            type="radio"
+            name="PriceSort"
+            onClick={() => dispatch({ type: "SORT", payload: "HIGH_TO_LOW" })}
+          />
+          High to low
+        </label>
+        <label>
+          <input
+            type="radio"
+            name="PriceSort"
+            onClick={() => dispatch({ type: "SORT", payload: "LOW_TO_HIGH" })}
+          />
+          Low to high
+        </label>
       </nav>
     </div>
   );

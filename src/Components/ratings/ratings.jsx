@@ -1,13 +1,13 @@
 import "./ratings.css";
 import { AiFillStar, AiOutlineStar } from "react-icons/ai";
-import { useData } from "../../context/Data";
+import { useData } from "../../context/data";
 export const RatingsComponent = () => {
   const { state, dispatch } = useData();
   const {filter}  = state
   const { ratings } = filter;
   return (
     <div className="rating-heading-wrapper">
-      <h1 className="ratings-heading">Rating filter</h1>
+      <h1 className="ratings-heading">Rating Filter</h1>
       <div className="ratings-wrapper">
         <button
           className="button-ratings"

@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import { Header } from "../../Components/header/header";
+import { Header } from "../../components/header/header";
 import { useAuth } from "../../context/auth";
 export const SignUp = () => {
   const [firstName, setfirstName] = useState("");

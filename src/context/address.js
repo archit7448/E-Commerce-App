@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useReducer } from "react";
+import { createContext, useContext, useReducer } from "react";
 import { v4 as uuid } from "uuid";
 import { notificationSuccess } from "../utility/notify";
 const IntialState = {
@@ -40,19 +40,9 @@ const IntialState = {
     "Uttarakhand",
     "West Bengal",
   ],
-  Address: [
-    {
-      name: "Archit Singh",
-      pincode: "200010",
-      city: "Kanpur",
-      address: "F-673 Ratan Lal Nagar",
-      state: "Uttar Pradesh",
-      phoneNumber: "9235662323",
-      _id: uuid(),
-      display: true,
-    },
-  ],
+  Address: [],
   defaultAddress: null,
+  checkoutAddress: {},
 };
 
 const toggleDisplay = (state, payload) => {

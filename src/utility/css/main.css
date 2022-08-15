@@ -1,0 +1,38 @@
+@import url(./utility.css);
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+:root {
+  --color-primary-first: white;
+  --color-primary-second: #e32d2c;
+  --color-background-primary: #000000;
+  --color-icon: #a9a9a9;
+  --color-background-secondary: #222230;
+  --color-border-primary: #afafaf;
+}
+html {
+  font-size: 62.5%;
+}
+a {
+  text-decoration: none;
+}
+input,
+textarea,
+button {
+  font-family: "Roboto", sans-serif;
+  font-size: inherit;
+}
+
+@media only screen and (max-width: 720px) {
+  html {
+    font-size: 55%;
+  }
+}
+@media only screen and (max-width: 600px) {
+  html {
+    font-size: 50%;
+  }
+}

@@ -1,80 +1,163 @@
-import { ReactComponent as Logo } from "../../assets/logo.svg";
-import { AiOutlineShoppingCart, AiOutlineHeart } from "react-icons/ai";
-import { FaUserAlt } from "react-icons/fa";
-import { Link, useLocation } from "react-router-dom";
+import { AiOutlineHeart, AiOutlineClose } from "react-icons/ai";
+import { BiShoppingBag, BiUser } from "react-icons/bi";
+import { GoSearch } from "react-icons/go";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import "./header.css";
-import { useData } from "../../context/Data";
+import { useData } from "../../context/data";
+import { SearchFilter } from "../../reducers/filter";
 export const Header = () => {
   let location = useLocation();
-  const { cart, wishlist, search, dispatch } = useData();
+  const { cart, wishlist, search, dispatch, products } = useData();
   const token = localStorage.getItem("token");
+  const navigate = useNavigate();
+  const cartHandler = () => {
+    if (token === null) {
+      navigate("/signIn");
+    } else {
+      navigate("/cart");
+    }
+  };
+  const wishlistHandler = () => {
+    if (token === null) {
+      navigate("/signIn");
+    } else {
+      navigate("/wishlist");
+    }
+  };
+  const searchData = SearchFilter(products, search);
+  const navigateHandle = (title) => {
+    navigate(`/product/${title}`);
+    dispatch({ type: "UPDATE_SEARCH", payload: "" });
+  };
+  const profileHandler = () => {
+    navigate("/profile");
+  };
   return (
-    <header className="navigation navigation-component">
+    <header className="navigation">
       <Link to="/">
-        <div className="logo-header">
-          <h3 className="logo-name"> MindifyCart</h3>
-          <Logo className="logo" />
-        </div>
-      </Link>
-      {location.pathname === "/products" && (
-        <div className="input-wrapper">
-          <input
-            type="text"
-            className="input-search"
-            placeholder="...search"
-            value={search}
-            onChange={(event) =>
-              dispatch({ type: "UPDATE_SEARCH", payload: event.target.value })
+        <div className="logo-header flex-row">
+          <h3 className="logo-name"> ShoeNew</h3>
+          <img
+            src={
+              "https://res.cloudinary.com/dqlfw4xi2/image/upload/v1660125441/logo_yve5sf.png"
             }
+            alt="logo"
           />
         </div>
-      )}
-      <div className="login-cart">
-        {token !== null ? (
-          <Link to="/Cart">
-            <div className="header-logo cart-logo">
-              <AiOutlineShoppingCart />
-            </div>
-            <span className="cart-log">
-              {cart.length < 10 ? cart.length : 9 + "+"}
-            </span>
-          </Link>
+      </Link>
+      <div className="input-wrapper">
+        <input
+          type="text"
+          className="input-search"
+          placeholder="Search Shoes"
+          value={search}
+          onChange={(event) =>
+            dispatch({ type: "UPDATE_SEARCH", payload: event.target.value })
+          }
+        />
+        {searchData.length > 0 ? (
+          <div
+            className="input-icon"
+            onClick={() => dispatch({ type: "UPDATE_SEARCH", payload: "" })}
+          >
+            <AiOutlineClose />
+          </div>
         ) : (
-          <Link to="/signIn">
-            <div className="header-logo">
-              <AiOutlineShoppingCart />
-            </div>
-          </Link>
+          <div className="input-icon">
+            <GoSearch />
+          </div>
         )}
-        {token !== null ? (
-          <Link to="/Wishlist">
-            <div className="header-logo heart-logo">
-              <AiOutlineHeart />
-              <span className="cart-log">
-                {wishlist.length < 10 ? wishlist.length : 9 + "+"}
-              </span>
+        {searchData.length > 0 ? (
+          <div className="search-data">
+            <div>
+              <h1>Suggested Products</h1>
             </div>
-          </Link>
+            {searchData.map(({ title, price, image, _id }) => {
+              return (
+                <div
+                  key={_id}
+                  className="flex-row search-parent"
+                  onClick={() => navigateHandle(title)}
+                >
+                  <img src={image} />
+                  <div>
+                    <h2>{title}</h2>
+                    <h6>₹{price}</h6>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
         ) : (
-          <Link to="/signIn">
-            <div className="header-logo">
-              <AiOutlineHeart />
-            </div>
-          </Link>
+          <></>
         )}
-        {token !== null ? (
-          <Link to="/profile">
-            <button className="button button-login">
-              <FaUserAlt />
-            </button>
-          </Link>
+      </div>
+      <div className="flex-row margin-left-1rem">
+        <div className="logo-icon" onClick={() => cartHandler()}>
+          <BiShoppingBag />
+          {cart.length > 0 && (
+            <div className="logo-number">
+              {cart.length > 9 ? "9+" : cart.length}
+            </div>
+          )}
+        </div>
+        <div className="logo-icon" onClick={() => wishlistHandler()}>
+          <AiOutlineHeart />
+          {wishlist.length > 0 && (
+            <div className="logo-number">
+              {wishlist.length > 9 ? "9+" : wishlist.length}
+            </div>
+          )}
+        </div>
+        <div className="logo-icon" onClick={() => profileHandler()}>
+          <BiUser />
+        </div>
+      </div>
+      <div className="input-wrapper wrap-up">
+        <input
+          type="text"
+          className="input-search"
+          placeholder="Search Shoes"
+          value={search}
+          onChange={(event) =>
+            dispatch({ type: "UPDATE_SEARCH", payload: event.target.value })
+          }
+        />
+        {searchData.length > 0 ? (
+          <div
+            className="input-icon"
+            onClick={() => dispatch({ type: "UPDATE_SEARCH", payload: "" })}
+          >
+            <AiOutlineClose />
+          </div>
         ) : (
-          <Link to="/signIn">
-            <button className="button  button-login">
-              {" "}
-              <FaUserAlt />{" "}
-            </button>
-          </Link>
+          <div className="input-icon">
+            <GoSearch />
+          </div>
+        )}
+        {searchData.length > 0 ? (
+          <div className="search-data search-540px">
+            <div>
+              <h1>Suggested Products</h1>
+            </div>
+            {searchData.map(({ title, price, image, _id }) => {
+              return (
+                <div
+                  key={_id}
+                  className="flex-row search-parent"
+                  onClick={() => navigateHandle(title)}
+                >
+                  <img src={image} />
+                  <div>
+                    <h2>{title}</h2>
+                    <h6>₹{price}</h6>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        ) : (
+          <></>
         )}
       </div>
     </header>

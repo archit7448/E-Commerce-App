@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import { makeServer } from "./server";
-import { DataProvider } from "./context/Data";
+import { DataProvider } from "./context/data";
 import { BrowserRouter } from "react-router-dom";
 import { AuthProvider } from "./context/auth";
 import { AddressProvider } from "./context/address";

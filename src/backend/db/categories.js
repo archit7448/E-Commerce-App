@@ -9,21 +9,25 @@ export const categories = [
   {
     _id: uuid(),
     categoryName: "BOOK",
-    image: Images.book1,
+    image:
+      "https://res.cloudinary.com/dqlfw4xi2/image/upload/v1659519324/daria-nepriakhina-xY55bL5mZAM-unsplash_s7bm7n.jpg",
   },
   {
     _id: uuid(),
     categoryName: "MOVIE",
-    image: Images.movie1,
+    image:
+      "https://res.cloudinary.com/dqlfw4xi2/image/upload/v1659519316/samuel-regan-asante-wMkaMXTJjlQ-unsplash_jjapy1.jpg",
   },
   {
     _id: uuid(),
     categoryName: "FOOD",
-    image: Images.food1,
+    image:
+      "https://res.cloudinary.com/dqlfw4xi2/image/upload/v1659519653/growth_in_the_packaged_food_industry_1536x1536_original_ko9nee.jpg",
   },
   {
     _id: uuid(),
     categoryName: "GYM",
-    image: Images.gym1,
+    image:
+      "https://res.cloudinary.com/dqlfw4xi2/image/upload/v1659519309/alexandra-tran-fS3tGOkp0xY-unsplash_f34058.jpg",
   },
 ];

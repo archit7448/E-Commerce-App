@@ -1,90 +1,158 @@
-.place-order {
-  box-shadow: 1px 2px 2px 2px var(--color-box-shadow);
-  padding: 3rem;
-  margin: 0 auto;
+@import url("https://fonts.googleapis.com/css2?family=Slabo+27px&display=swap");
+.order-summary {
+  font-family: "Roboto", sans-serif;
+}
+.order-summary h1 {
+  font-size: 2rem;
+  font-weight: 400;
+}
+.cart-summary {
   width: fit-content;
-  height: fit-content;
-  line-height: 2.5em;
-}
-.productPage-wrapper {
-  display: grid;
-  position: relative;
-  grid-template-columns: 1fr 1fr;
-}
-.button-place-order {
-  width: 100%;
-  padding: 1rem;
-  margin-top: 2rem;
-}
-.button-coupon {
-  font-size: 1.3rem;
-  padding: 0rem 1rem;
-  height: 3rem;
-  align-self: center;
-  margin: 0 1rem;
-}
-.overlay-coupon {
-  position: fixed;
-  width: 35rem;
-  padding: 2rem;
   display: flex;
-  flex-direction: column;
-  height: fit-content;
   align-items: center;
-  left: 50%;
-  z-index: 9999;
-  background-color: var(--color-white);
-  transform: translate(-50%, 20%);
-  box-shadow: 1px 2px 13px 2px var(--color-box-shadow);
+  justify-content: space-between;
+  margin-top: 1.5rem;
+  margin-bottom: 3rem;
 }
-.check-button-wrapper {
-  display: flex;
-  margin: 2rem;
-  width: fit-content;
+.cart-summary img {
+  width: 11rem;
+  object-fit: cover;
+}
+.cart-details {
+  justify-content: space-between;
+  height: 10rem;
+  margin-left: 2.5rem;
+}
+.cart-summary h2 {
+  font-size: 2rem;
+  font-weight: 500;
+  margin-right: 1rem;
+}
+.cart-summary h1 {
+  font-size: 1.8rem;
+  font-weight: 400;
+}
+.cart-summary h6 {
+  font-size: 2.2rem;
+  color: var(--color-primary-second);
+  font-weight: 400;
+}
+hr {
+  border: 0.5px solid var(--color-border-primary);
+  background-color: var(--color-border-primary);
+}
+.cart-details hr {
+  margin-top: 1.5rem;
+}
+.quantity-container {
+  margin-top: 1rem;
+}
+.quantity-container button {
+  font-size: 1.6rem;
+  font-weight: 400;
+  padding: 0.5rem 1rem;
+  border-radius: 50%;
+  border: 2px solid var(--color-background-primary);
+}
+.remove-cart-button {
+  border: 0px;
+  background-color: var(--color-primary-first);
+  margin-top: 1rem;
+  font-size: 1.4rem;
+  font-weight: 500;
+  color: var(--color-icon);
+  cursor: pointer;
+  border-bottom: 1px solid var(--color-icon);
+}
+.remove-cart-button:focus {
+  outline: none;
+}
+.coupon-wrapper {
+  width: 100%;
+  margin-top: 4rem;
   padding: 1rem 2rem;
-  border: 1px solid var(--color-grey);
+  background-color: #fafafa;
 }
-.check-input {
+.promo-heading {
   font-size: 1.6rem;
+  align-items: center;
 }
-.check-input:focus {
-  outline: 0px;
-}
-.check-button {
-  color: var(--color-neon-blue);
-  font-weight: 900;
-  cursor: pointer;
-  background-color: var(--color-white);
-}
-.check-button:focus {
-  outline: 0px;
-}
-.coupon-text-container {
-  width: 100%;
-  display: flex;
-  height: 15rem;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 1rem 8px;
-  background-color: #f4f4f5;
-}
-.button-apply-coupon {
-  width: 12rem;
-  margin: 2rem;
+.coupon-wrapper h1 {
   font-size: 1.6rem;
+  font-weight: 700;
 }
-.cancel-coupon-container {
+.coupon-wrapper h2 {
+  font-size: 1.6rem;
+  font-weight: 400;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+.coupon-wrapper input {
+  font-size: 1.6rem;
+  width: 25rem;
+  padding: 1rem;
+  border: 1px solid var(--color-border-primary);
+}
+.coupon-wrapper button {
+  font-size: 1.6rem;
   display: flex;
-  justify-content: space-between;
-  width: 100%;
+  padding: 5px;
+  width: 10rem;
+  font-weight: 500;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  cursor: pointer;
+  border: 1px solid var(--color-border-primary);
+}
+.coupon-wrapper input:focus {
+  outline: none;
+}
+.button-black {
+  background-color: var(--color-background-primary);
+  color: var(--color-primary-first);
+}
+.drop-down {
+  font-size: 4rem;
+  font-weight: 100;
   cursor: pointer;
 }
-.text-red {
-  color: var(--alert-error);
+.coupon-apply-wrapper {
+  transition: 1s;
 }
-@media screen and (max-width: 600px) {
-  .productPage-wrapper {
-    display: grid;
-    grid-template-columns: 1fr;
-  }
+.total-table {
+  margin-top: 3rem;
+}
+.total-table h2 {
+  font-size: 1.8rem;
+  font-weight: 400;
+  margin: 1rem 0;
+}
+.total-table h1 {
+  font-size: 2.2rem;
+  font-weight: 500;
+}
+.total-table h3 {
+  font-size: 1.4rem;
+  align-self: flex-end;
+  color: var(--color-icon);
+  margin: 0 4px;
+  font-weight: 400;
+}
+.wrong-color {
+  color: var(--color-primary-second);
+}
+.correct-color {
+  color: #00ba2f;
+}
+.strike-through {
+  text-decoration: line-through;
+}
+.cart-handler-wrapper {
+  display: flex;
+  width: 90%;
+  margin: 0 auto;
+  margin-top: 14rem;
+  justify-content: space-between;
+  flex-direction: row-reverse;
 }
