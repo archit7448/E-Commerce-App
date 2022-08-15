@@ -1,5 +1,5 @@
 import { Card, Header, WishlistCard } from "../../components/index";
-import { useData } from "../../context/data";
+import { useData } from "../../context/dataContext";
 export const WishListPage = () => {
   const { wishlist } = useData();
   return (
@@ -11,9 +11,9 @@ export const WishListPage = () => {
             <Card key={products._id} prop={{ products, isWishlist: true }} />
           ))
         ) : (
-           <div className="flex-center">
+          <div className="flex-center">
             <h1>EMPTY WISHLIST</h1>
-           </div>
+          </div>
         )}
       </section>
     </main>

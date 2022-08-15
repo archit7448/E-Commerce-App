@@ -4,7 +4,7 @@ import {
   AiOutlineShoppingCart,
   AiFillHeart,
 } from "react-icons/ai";
-import { useData } from "../../context/data";
+import { useData } from "../../context/dataContext";
 import { addToCart } from "../../reducers/Cart";
 import { addToWishlist, removeFromWishlist } from "../../reducers/wishlist";
 import { useNavigate } from "react-router-dom";

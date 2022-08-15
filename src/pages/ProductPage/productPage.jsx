@@ -1,6 +1,6 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { Header } from "../../components/header/header";
-import { useData } from "../../context/data";
+import { useData } from "../../context/dataContext";
 import "./productPage.css";
 import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 import { addToCart } from "../../reducers/Cart";

@@ -10,10 +10,9 @@ import {
   SortedFunction,
   RatingFilter,
   PriceFilter,
-  SearchFilter,
 } from "../../reducers/filter";
-import "./productListPage.css";
-import { useData } from "../../context/data";
+import "./explorePage.css";
+import { useData } from "../../context/dataContext";
 import { AiOutlineClose } from "react-icons/ai";
 import { ProductCard } from "../../components/cardProduct/cardProduct";
 export const ProductPage = () => {
