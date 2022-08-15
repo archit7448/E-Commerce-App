@@ -1,6 +1,6 @@
 import mainImage from "../../assets/Image.png";
 import { Header, Genres } from "../../components/index";
-import "./homePage.css";
+import "./landingPage.css";
 import { Link } from "react-router-dom";
 export const HomePage = () => {
   return (
