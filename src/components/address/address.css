@@ -1,0 +1,110 @@
+.address-wrapper {
+  width: 45vw;
+}
+.address-wrapper h1 {
+  font-size: 2.5rem;
+  font-weight: 400;
+}
+.address-heading {
+  background-color: var(--color-border-primary);
+  flex-grow: 1;
+  background-color: #eeeeee;
+  padding: 1rem;
+}
+.form {
+  width: 90%;
+  margin: 0 auto;
+  font-family: "Slabo 27px", sans-serif;
+  display: flex;
+  flex-direction: column;
+}
+.form input {
+  width: 100%;
+  margin: 1rem 0;
+  font-size: 1.6rem;
+  padding: 0 1rem;
+  padding-top: 2rem;
+  padding-bottom: 5px;
+  font-family: "Slabo 27px", sans-serif;
+}
+.form label {
+  position: relative;
+}
+.animate-h2 {
+  font-size: 1.2rem;
+  position: absolute;
+  color: var(--color-icon);
+  font-weight: 500;
+  transform: translate(30%, -250%);
+  transform: 0.5s ease-in-out;
+}
+.form select {
+  width: 100%;
+  margin: 1rem 0;
+  font-size: 1.6rem;
+  padding: 0 1rem;
+  padding-top: 2rem;
+  padding-bottom: 5px;
+  font-family: "Slabo 27px", sans-serif;
+}
+.form input:focus + .animate-h2 {
+  font-size: 1.2rem;
+  transform: translate(30%, -380%);
+  transition: 0.5s ease-in-out;
+}
+.form input:valid + .animate-h2 {
+  font-size: 1.2rem;
+  transform: translate(30%, -380%);
+  transition: 0.5s ease-in-out;
+}
+.form input:invalid + .animate-h2 {
+  transform: translate(30%, -250%);
+}
+.select-h2 {
+  font-size: 1.2rem;
+  position: absolute;
+  color: var(--color-icon);
+  font-weight: 500;
+  transform: translate(30%, -380%);
+}
+.email-wrapper {
+  font-family: "Slabo 27px", sans-serif;
+  padding-top: 2rem;
+}
+.email-wrapper h2 {
+  font-size: 2.5rem;
+  font-weight: 100;
+}
+.button-address {
+  background-color: #ae946d;
+  color: var(--color-primary-first);
+  padding: 1rem 2rem;
+  border: 0px;
+  margin: 1rem 0;
+}
+.address-detail-wrapper {
+  display: flex;
+  padding: 2rem;
+  justify-content: space-between;
+}
+.address-detail-wrapper h2 {
+  font-size: 1.8rem;
+  margin-top: 1rem;
+  font-weight: 500;
+}
+.address-wrapper h3 {
+  font-size: 1.6rem;
+  font-weight: 400;
+  margin-top: 5px;
+}
+.margin-top-1rem {
+  margin-top: 1rem;
+}
+.address-wrapper h3 {
+  align-self: center;
+  font-weight: 900;
+  cursor: pointer;
+}
+.margin-1rem{
+  margin-left: 1rem;
+}

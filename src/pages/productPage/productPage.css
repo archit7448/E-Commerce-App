@@ -1,0 +1,119 @@
+.product-id-page {
+  display: flex;
+  padding: 0rem 2rem;
+  flex-direction: row;
+}
+.product-id-image {
+  width: fit-content;
+  padding: 2rem;
+}
+.product-id-image img {
+  width: 55rem;
+  height: 60rem;
+  object-fit: cover;
+}
+.product-id-details {
+  margin: 1rem 0;
+  flex-direction: column;
+}
+.product-id-heading {
+  font-size: 7rem;
+  font-weight: 500;
+}
+.product-id-description {
+  display: flex;
+  color: var(--color-grey);
+  font-size: 2.5rem;
+  flex-wrap: wrap;
+  font-weight: 300;
+  margin: 3rem 0rem;
+}
+.product-id-details h1 {
+  font-size: 3rem;
+  margin-top: 2rem;
+}
+.product-id-button {
+  width: 30rem;
+  padding: 2rem 3rem;
+  font-size: 2rem;
+  margin: 2rem 0rem;
+}
+.product-id-price {
+  font-size: 3rem;
+  color: var(--color-grey);
+  font-weight: 700;
+  margin: 3rem 0;
+}
+.product-id-button-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+.size-button {
+  width: 5rem;
+  height: 5rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border: 3px solid var(--color-background-primary);
+  margin: 2rem;
+}
+.product-id-details h6 {
+  color: #e32d2c;
+  font-size: 1.6rem;
+  font-weight: 500;
+}
+.size-selected {
+  background-color: var(--color-background-primary);
+  color: var(--color-primary-first);
+  font-weight: 700;
+}
+.shake-wrapper {
+  animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+@keyframes shake {
+  10%,
+  90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+
+  20%,
+  80% {
+    transform: translate3d(2px, 0, 0);
+  }
+
+  30%,
+  50%,
+  70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+
+  40%,
+  60% {
+    transform: translate3d(4px, 0, 0);
+  }
+}
+@media screen and (max-width: 900px) {
+  .product-id-page {
+    flex-direction: column;
+    width: 90%;
+    margin: 0 auto;
+  }
+  .product-id-image img {
+    width: 100%;
+    height: auto;
+  }
+}
+@media screen and (max-width: 540px) {
+  .product-id-button-wrapper {
+    flex-direction: column;
+  }
+  .product-id-button {
+    width: 100%;
+  }
+}

@@ -1,0 +1,40 @@
+.category-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  position: relative;
+  width: 25rem;
+}
+.button-animation {
+  position: absolute;
+  top: 12rem;
+  color: white;
+  font-size: 2rem;
+  font-weight: 400;
+  padding: 5px 3rem;
+  border-radius: 5px;
+  border: 1.5px solid white;
+  background-color: rgba(0, 0, 0, 0);
+}
+.category-card:hover .overlay {
+  display: block;
+  background-color: var(--color-box-shadow);
+}
+.image-categories {
+  width: 25rem;
+  height: 25rem;
+  object-fit: cover;
+  border-radius: 1.6rem;
+  transition: 1s;
+}
+.image-categories:hover {
+  transform: scale(1.2);
+  transition: 1s;
+}
+@media only screen and (max-width: 600px) {
+   .image-categories{
+    margin: 2rem 0;
+   }
+}
+
