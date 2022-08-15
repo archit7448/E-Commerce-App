@@ -1,5 +1,5 @@
 import { useLocation, useNavigate } from "react-router-dom";
-import { useData } from "../../context/data";
+import { useData } from "../../context/dataContext";
 import {
   addToCart,
   decrementOperater,

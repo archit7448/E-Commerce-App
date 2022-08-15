@@ -4,11 +4,16 @@
   align-items: center;
   justify-content: center;
   margin-top: 15rem;
+  flex-direction: column;
 }
-.user-wrapper {
-  width: 100%;
+.button-logout {
+  align-self: flex-end;
+  margin-bottom: 2rem;
+  padding: 2px 2rem;
 }
-.user-wrapper .address-heading {
-  width: 100%;
-  background-color: var();
+
+@media screen and (max-width: 580px) {
+  .profile-wrapper .address-wrapper {
+    width: 90vw;
+  }
 }

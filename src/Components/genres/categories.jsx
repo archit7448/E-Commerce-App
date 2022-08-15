@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { useData } from "../../context/data";
+import { useData } from "../../context/dataContext";
 import "./categories.css";
 export const Genres = () => {
   const { categories, dispatch } = useData();

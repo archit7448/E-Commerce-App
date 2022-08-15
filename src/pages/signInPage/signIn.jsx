@@ -8,8 +8,8 @@ export const SignIn = () => {
   const [password, setPassword] = useState("");
   const { LoginHandler, user } = useAuth();
   const guestHandler = () => {
-    setEmail("johndoe@gmail.com");
-    setPassword("johnDoe123");
+    setEmail("architsingh1064@gmail.com");
+    setPassword("archit123");
   };
   return (
     <main>

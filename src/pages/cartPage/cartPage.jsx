@@ -3,7 +3,7 @@ import {
   AddressManager,
   Header,
 } from "../../components/index";
-import { useData } from "../../context/data";
+import { useData } from "../../context/dataContext";
 import "./cartPage.css";
 import { useState, useEffect } from "react";
 import { notificationError, notificationInfo } from "../../utility/notify";

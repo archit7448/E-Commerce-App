@@ -1,4 +1,4 @@
-import { useData } from "../../context/data";
+import { useData } from "../../context/dataContext";
 import { AiOutlineDown } from "react-icons/ai";
 import {
   HiOutlineSortAscending,

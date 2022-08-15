@@ -1,4 +1,4 @@
-import { useData } from "../../context/data";
+import { useData } from "../../context/dataContext";
 
 export const ProductFilter = () => {
   const { state, dispatch } = useData();

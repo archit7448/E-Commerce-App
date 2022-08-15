@@ -3,7 +3,7 @@ import { BiShoppingBag, BiUser } from "react-icons/bi";
 import { GoSearch } from "react-icons/go";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import "./header.css";
-import { useData } from "../../context/data";
+import { useData } from "../../context/dataContext";
 import { SearchFilter } from "../../reducers/filter";
 export const Header = () => {
   let location = useLocation();

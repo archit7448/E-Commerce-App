@@ -1,6 +1,6 @@
 import "./ratings.css";
 import { AiFillStar, AiOutlineStar } from "react-icons/ai";
-import { useData } from "../../context/data";
+import { useData } from "../../context/dataContext";
 export const RatingsComponent = () => {
   const { state, dispatch } = useData();
   const {filter}  = state
