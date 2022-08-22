@@ -1,6 +1,5 @@
 import { createContext, useContext, useReducer } from "react";
 import { v4 as uuid } from "uuid";
-import { notificationSuccess } from "../utility/notify";
 const IntialState = {
   stateIndia: [
     "Andaman and Nicobar Islands",
@@ -41,8 +40,23 @@ const IntialState = {
     "West Bengal",
   ],
   Address: [],
-  defaultAddress: null,
-  checkoutAddress: {},
+  defaultAddress: {},
+  checkoutAddress: [
+    {
+      _id: "1",
+      firstname: "",
+      lastname: "",
+      address: "",
+      pincode: "",
+      city: "",
+      state: "",
+      email: "",
+      phoneNumber: "",
+      title: "Checkout Address",
+      edit: false,
+    },
+  ],
+  checkoutState: true,
 };
 
 const toggleDisplay = (state, payload) => {
@@ -50,8 +64,8 @@ const toggleDisplay = (state, payload) => {
   return {
     ...state,
     Address: Address.map((address) =>
-      address._id === payload
-        ? { ...address, display: !address.display }
+      address._id === payload._id
+        ? { ...address, edit: !address.edit }
         : address
     ),
   };
@@ -63,7 +77,7 @@ const updateAddress = (state, payload) => {
     ...state,
     Address: Address.map((address) =>
       address._id === payload._id
-        ? { ...payload, display: !address.display }
+        ? { ...payload, edit: !address.display }
         : address
     ),
   };
@@ -77,12 +91,47 @@ const deleteAddress = (state, payload) => {
   };
 };
 
-const setDefaultAddress = (state, payload) => {
-  const { Address } = state;
-  notificationSuccess("Default Address");
+const setCheckoutAddress = (state, payload) => {
+  if (payload._id !== "checkout") {
+    const { Address } = state;
+    const value = Address.filter((address) => address._id === payload._id)[0];
+    return {
+      ...state,
+      checkoutAddress: [{ ...value, edit: false }],
+    };
+  }
   return {
     ...state,
-    defaultAddress: Address.filter((address) => address._id === payload._id),
+    checkoutAddress: [
+      {
+        _id: "1",
+        firstname: "",
+        lastname: "",
+        address: "",
+        pincode: "",
+        city: "",
+        state: "",
+        email: "",
+        phoneNumber: "",
+        title: "Checkout Address",
+        edit: false,
+      },
+    ],
+  };
+};
+
+const addCheckoutAddress = (state, payload) => {
+  return { ...state, checkoutAddress: [payload] };
+};
+
+const toggleCheckoutAddress = (state) => {
+  const { checkoutAddress } = state;
+  return {
+    ...state,
+    checkoutAddress: checkoutAddress.map((address) => ({
+      ...address,
+      edit: false,
+    })),
   };
 };
 
@@ -93,7 +142,7 @@ const reducer = (state, action) => {
         ...state,
         Address: [
           ...state.Address,
-          { ...action.payload, _id: uuid(), display: true },
+          { ...action.payload, _id: uuid(), edit: true },
         ],
       };
     case "TOGGLE_DISPLAY":
@@ -104,6 +153,14 @@ const reducer = (state, action) => {
       return deleteAddress(state, action.payload);
     case "SELECT_DEFAULT_ADDRESS":
       return setDefaultAddress(state, action.payload);
+    case "SET_CHECKOUT_ADDRESS":
+      return setCheckoutAddress(state, action.payload);
+    case "SET_DEFAULT_ADD_ADDRESS":
+      return setAddDefaultAddress(state, action.payload);
+    case "ADD_CHECKOUT_ADDRESS":
+      return addCheckoutAddress(state, action.payload);
+    case "TOGGLE_CHECKOUT_ADDRESS":
+      return toggleCheckoutAddress(state);
     default:
       return { state };
   }
@@ -113,10 +170,10 @@ const AddressContext = createContext(null);
 
 const AddressProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, IntialState);
-  const { stateIndia, Address, defaultAddress } = state;
+  const { stateIndia, Address, defaultAddress, checkoutAddress } = state;
   return (
     <AddressContext.Provider
-      value={{ dispatch, stateIndia, Address, defaultAddress }}
+      value={{ dispatch, stateIndia, Address, defaultAddress, checkoutAddress }}
     >
       {children}
     </AddressContext.Provider>

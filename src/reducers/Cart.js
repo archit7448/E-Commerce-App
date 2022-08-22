@@ -36,7 +36,6 @@ export const removeFromCart = async (dispatch, id) => {
 };
 
 export const emptyCart = async (dispatch, cart, coupon) => {
-  console.log(coupon);
   try {
     const response = await axios.delete(`/api/user/cart`, {
       headers: {

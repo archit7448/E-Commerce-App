@@ -7,10 +7,11 @@ import {
   ProductPage,
   ProductDetail,
   ProfilePage,
-  CartPage,
   WishListPage,
   SignIn,
   SignUp,
+  CheckoutPage,
+  CartPage,
 } from "./pages";
 
 const App = () => {
@@ -23,8 +24,9 @@ const App = () => {
         <Route path="/signIn" element={<SignIn />} />
         <Route path="/signUp" element={<SignUp />} />
         <Route path="/wishlist" element={<WishListPage />} />
-        <Route path="/cart" element={<CartPage />} />
+        <Route path="/checkout" element={<CheckoutPage />} />
         <Route path="/profile" element={<ProfilePage />} />
+        <Route path="/cart" element={<CartPage />} />
       </Routes>
       <ToastContainer />
     </div>

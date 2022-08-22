@@ -1,18 +1,22 @@
 import { useAuth } from "../../context/auth";
-import { useAddress } from "../../context/address";
-import { CgProfile } from "react-icons/cg";
 import { FiLogIn } from "react-icons/fi";
-import { useState, useEffect } from "react";
 import "./profile.css";
 import {
+  AddressComponent,
   AddressManager,
   Header,
-  AddressComponent,
 } from "../../components/index";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { useAddress } from "../../context/address";
+import { useState } from "react";
 export const ProfilePage = () => {
   const { user } = useAuth();
-  console.log(user);
+  const { Address } = useAddress();
+  const navigate = useNavigate();
+  const [display, setDisplay] = useState(false);
+  const addressNavigate = () => {
+    setDisplay((state) => !state);
+  };
   return (
     <main>
       <Header />
@@ -46,6 +50,39 @@ export const ProfilePage = () => {
             <div className="address-heading">
               <h1>Addresses</h1>
             </div>
+            {Address.length > 0 ? (
+              Address.map((value) => {
+                return <AddressManager key={value._id} prop={value} />;
+              })
+            ) : (
+              <></>
+            )}
+            <button
+              className="button-primary button-addresses"
+              onClick={() => addressNavigate()}
+            >
+              Add New Address
+            </button>
+            {display ? (
+              <AddressComponent
+                prop={{
+                  firstname: "",
+                  lastname: "",
+                  address: "",
+                  pincode: "",
+                  city: "",
+                  state: "",
+                  email: "",
+                  phoneNumber: "",
+                  title: "",
+                  edit: "",
+                  _id: "",
+                  setDisplay,
+                }}
+              />
+            ) : (
+              <></>
+            )}
           </div>
         </div>
       </section>

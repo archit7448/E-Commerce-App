@@ -11,7 +11,10 @@
   margin-bottom: 2rem;
   padding: 2px 2rem;
 }
-
+.button-addresses {
+  padding: 2px 2rem;
+  margin: 2rem 0;
+}
 @media screen and (max-width: 580px) {
   .profile-wrapper .address-wrapper {
     width: 90vw;

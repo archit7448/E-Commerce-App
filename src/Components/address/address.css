@@ -1,5 +1,6 @@
 .address-wrapper {
   width: 45vw;
+  margin-bottom: 4rem;
 }
 .address-wrapper h1 {
   font-size: 2.5rem;
@@ -37,6 +38,16 @@
   font-weight: 500;
   transform: translate(30%, -250%);
   transform: 0.5s ease-in-out;
+}
+select {
+  width: 90%;
+  margin: 1rem 0;
+  font-size: 1.6rem;
+  padding: 0 1rem;
+  padding-top: 2rem;
+  padding-bottom: 5px;
+  font-family: "Slabo 27px", sans-serif;
+  align-self: center;
 }
 .form select {
   width: 100%;
@@ -92,6 +103,9 @@
   margin-top: 1rem;
   font-weight: 500;
 }
+.address-detail-wrapper h3 {
+  font-size: 2rem;
+}
 .address-wrapper h3 {
   font-size: 1.6rem;
   font-weight: 400;
@@ -100,11 +114,38 @@
 .margin-top-1rem {
   margin-top: 1rem;
 }
-.address-wrapper h3 {
+.margin-1rem {
+  margin-left: 1rem;
+}
+.dummy-button {
+  font-size: 2rem;
+  font-weight: 500;
   align-self: center;
-  font-weight: 900;
   cursor: pointer;
 }
-.margin-1rem{
+.form .checkbox-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin: 2rem;
+}
+.form .checkbox-wrapper h4 {
+  font-size: 2rem;
+  font-weight: 500;
   margin-left: 1rem;
+}
+.form .checkbox-wrapper input {
+  scale: 1.5;
+}
+.button-address-wrapper {
+  align-self: flex-end;
+  margin: 1rem 0;
+}
+.button-address-wrapper button {
+  margin: 0 2rem;
+}
+.button-cancel {
+  padding: 1rem 0;
+  margin-bottom: 2rem;
 }

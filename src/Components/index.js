@@ -6,6 +6,5 @@ export { ProductFilter } from "./productFilter/productFilter";
 export { RatingsComponent } from "./ratings/ratings";
 export { Sort } from "./sort/sort";
 export { AddressManager } from "./addressManagement/addressManager";
-
-
-
+export { Coupon } from "./coupon/coupon";
+export { TotalPrice } from "./totalPrice/totalPrice";

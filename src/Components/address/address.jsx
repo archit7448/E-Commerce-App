@@ -1,27 +1,119 @@
-import { useState } from "react";
+import { useState} from "react";
 import { useAddress } from "../../context/address";
 import { validateEmail } from "../../utility/emailValidation/email";
 import { useLocation } from "react-router-dom";
 import "./address.css";
-export const AddressComponent = () => {
-  const { defaultAddress, stateIndia, dispatch } = useAddress();
+export const AddressComponent = ({ prop }) => {
+  const { stateIndia, dispatch, Address } = useAddress();
   const location = useLocation();
+  const {
+    firstname: propfirstName,
+    lastname: propLastName,
+    address: propAddress,
+    pincode: propPincode,
+    city: propCity,
+    state: propState,
+    email: propEmail,
+    phoneNumber: propPhoneNumber,
+    title: propTitle,
+    edit,
+    _id,
+    setDisplay,
+  } = prop;
   // State for Address Validation
 
-  const [firstname, setFirstName] = useState("");
-  const [lastname, setLastName] = useState("");
-  const [pincode, setPincode] = useState("");
-  const [city, setCity] = useState("");
-  const [address, setAddress] = useState("");
-  const [state, setState] = useState("Delhi");
-  const [email, setEmail] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
+  const [firstname, setFirstName] = useState(propfirstName);
+  const [lastname, setLastName] = useState(propLastName);
+  const [pincode, setPincode] = useState(propPincode);
+  const [city, setCity] = useState(propCity);
+  const [address, setAddress] = useState(propAddress);
+  const [state, setState] = useState(propState);
+  const [email, setEmail] = useState(propEmail);
+  const [phoneNumber, setPhoneNumber] = useState(propPhoneNumber);
   const [addressState, setAddressState] = useState();
-  const [addressEdit, setAddressEdit] = useState(true);
+  const [title, setTitle] = useState(propTitle);
+
+  const addAddressHandler = () => {
+    dispatch({
+      type: "ADD_ADDRESS",
+      payload: {
+        title,
+        firstname,
+        lastname,
+        pincode,
+        city,
+        address,
+        state,
+        email,
+        phoneNumber,
+      },
+    });
+    setDisplay(false);
+  };
+
+  const checkoutHandler = () => {
+    dispatch({
+      type: "ADD_CHECKOUT_ADDRESS",
+      payload: {
+        firstname,
+        lastname,
+        address,
+        pincode,
+        city,
+        state,
+        email,
+        phoneNumber,
+        title,
+        edit: true,
+        _id,
+      },
+    });
+  };
+
+  const updateHandler = () => {
+    dispatch({
+      type: "UPDATE_ADDRESS",
+      payload: {
+        firstname,
+        lastname,
+        address,
+        pincode,
+        city,
+        state,
+        email,
+        phoneNumber,
+        title,
+        edit,
+        _id,
+      },
+    });
+  };
+  const addressHandler = () => {
+    if (location.pathname !== "/profile") {
+      checkoutHandler();
+    } else {
+      edit ? updateHandler() : addAddressHandler();
+    }
+  };
+
+  const cancelHandler = (event) => {
+    event.preventDefault();
+    _id.length > 0
+      ? dispatch({ type: "TOGGLE_DISPLAY", payload: { _id } })
+      : setDisplay(false);
+  };
+
   const addressValidation = (event) => {
     event.preventDefault();
-    if (firstname.length < 2) {
-      setAddressError("Fill First Name!");
+    if (title.length < 2) {
+      setAddressState("Fill Title!");
+    } else if (
+      Address.length > 0 &&
+      Address.find((addressValue) => addressValue.title === title)
+    ) {
+      setAddressState("Please Fill Different Title! Already Taken");
+    } else if (firstname.length < 2) {
+      setAddressState("Fill First Name!");
     } else if (lastname.length < 2) {
       setAddressState("Fill Last Name!");
     } else if (address.length < 10) {
@@ -35,11 +127,15 @@ export const AddressComponent = () => {
     } else if (!validateEmail(email)) {
       setAddressState("Please fill Email Details Right!");
     } else {
-      setAddressEdit(false);
-      dispatch();
+      addressHandler();
     }
   };
   const fillDummyData = (event) => {
+    {
+      location.pathname === "/profile"
+        ? setTitle("New Address")
+        : setTitle("null");
+    }
     setFirstName("Archit");
     setLastName("Singh");
     setAddress("J-832 M.I.G.,Gujaini");
@@ -52,6 +148,19 @@ export const AddressComponent = () => {
   };
   return (
     <form className="form">
+      {location.pathname === "/profile" ? (
+        <label>
+          <input
+            type="text"
+            value={title}
+            onChange={(event) => setTitle(event.target.value)}
+            required
+          />
+          <h2 className="animate-h2">TITLE *</h2>
+        </label>
+      ) : (
+        <></>
+      )}
       <label>
         <input
           type="text"
@@ -127,7 +236,7 @@ export const AddressComponent = () => {
       </label>
       <label>
         <input
-          type="number"
+          type="text"
           value={phoneNumber}
           onChange={(event) => setPhoneNumber(event.target.value)}
           required
@@ -135,17 +244,27 @@ export const AddressComponent = () => {
         <h2 className="animate-h2">PHONE NUMBER*</h2>
       </label>
       <h2 className="wrong-color">{addressState}</h2>
-      <h3 className="" onClick={(event) => fillDummyData(event)}>
+      <h3 className="dummy-button" onClick={(event) => fillDummyData(event)}>
         Fill Dummy Data?
       </h3>
       <button
         className="button-primary button-address"
         onClick={(event) => addressValidation(event)}
       >
-        {location.pathname === "/cart"
+        {location.pathname === "/checkout"
           ? "Continue To Paymnet Method"
           : "Save Address"}
       </button>
+      {location.pathname === "/profile" ? (
+        <button
+          className="button-secondary button-cancel"
+          onClick={(event) => cancelHandler(event)}
+        >
+          Cancel
+        </button>
+      ) : (
+        <></>
+      )}
     </form>
   );
 };
